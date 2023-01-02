@@ -22,7 +22,7 @@
         flex-direction: column;
 
         input {
-            @extend %input-form;
+            @include input-form(blue);
         }
     }
 
@@ -31,7 +31,7 @@
     }
 
     button {
-        @extend %login-register-form-button;
+        @include login-register-form-button;
         
         margin: 16px 0;
     }

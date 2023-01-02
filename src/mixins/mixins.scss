@@ -1,4 +1,4 @@
-%login-register-form-button {
+@mixin login-register-form-button {
     cursor: pointer;
     color: white;
     background: #3369F3;
@@ -8,13 +8,13 @@
     border: none;
 }
 
-%input-form {
+@mixin input-form($colorBorder) {
     border: none;
     outline: none;
-    border-bottom: 1px solid blue;
+    border-bottom: 1px solid $colorBorder;
 }
 
-%avatar {
+@mixin avatar {
     border-radius: 50%;
     background: #EFEFEF;
 }
