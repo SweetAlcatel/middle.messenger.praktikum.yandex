@@ -12,10 +12,12 @@
     "wordwrap": "^1.0.0"
   },
   "devDependencies": {
+    "@parcel/transformer-inline-string": "^2.8.2",
+    "@parcel/transformer-sass": "^2.8.2",
     "parcel": "^2.8.2"
   },
   "scripts": {
-    "start": "parcel public/index.html",
+    "start": "parcel public/index.html --open",
     "build": "parcel build"
   },
   "repository": {
