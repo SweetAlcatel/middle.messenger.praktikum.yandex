@@ -11,5 +11,10 @@
 %input-form {
     border: none;
     outline: none;
-    border-bottom: 0.5px solid blue;
+    border-bottom: 1px solid blue;
+}
+
+%avatar {
+    border-radius: 50%;
+    background: #EFEFEF;
 }
