@@ -2,8 +2,8 @@
   "name": "middle.messenger.praktikum.yandex",
   "version": "0.0.1",
   "description": "web-messenger",
-  "main": "index.js",
   "dependencies": {
+    "express": "^4.18.2",
     "handlebars": "^4.7.7",
     "minimist": "^1.2.7",
     "neo-async": "^2.6.2",
@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "parcel public/index.html --open",
-    "build": "parcel build"
+    "build": "parcel build public/index.html"
   },
   "engine": {
     "node": ">=12.0.0"
