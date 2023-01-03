@@ -20,6 +20,9 @@
     "start": "parcel public/index.html --open",
     "build": "parcel build"
   },
+  "engine": {
+    "node": ">=12.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SweetAlcatel/middle.messenger.praktikum.yandex.git"
