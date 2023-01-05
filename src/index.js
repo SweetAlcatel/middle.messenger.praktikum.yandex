@@ -19,7 +19,7 @@ const routing = (href) => {
     case "/500":
       root.innerHTML = ServerErrorPage();
       break;
-    case "/reginstation":
+    case "/registration":
       root.innerHTML = SignUpPage();
       break;
     case "/login":
