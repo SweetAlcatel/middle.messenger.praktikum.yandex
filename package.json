@@ -1,0 +1,39 @@
+{
+  "name": "middle.messenger.praktikum.yandex",
+  "version": "0.0.1",
+  "description": "web-messenger",
+  "dependencies": {
+    "express": "4.18.2",
+    "handlebars": "4.7.7",
+    "minimist": "1.2.7",
+    "neo-async": "2.6.2",
+    "source-map": "0.6.1",
+    "uglify-js": "3.17.4",
+    "wordwrap": "1.0.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-inline-string": "2.8.2",
+    "@parcel/transformer-sass": "2.8.2",
+    "parcel": "2.8.2"
+  },
+  "scripts": {
+    "start": "parcel public/index.html --open --port 3000",
+    "build": "parcel build public/index.html"
+  },
+  "engine": {
+    "node": ">=12.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SweetAlcatel/middle.messenger.praktikum.yandex.git"
+  },
+  "keywords": [
+    "messenger"
+  ],
+  "author": "Dmitry Sharapov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SweetAlcatel/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/SweetAlcatel/middle.messenger.praktikum.yandex#readme"
+}

@@ -1,0 +1,47 @@
+@import '../../mixins/mixins.scss';
+
+.changeDataProfileWrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.changeDataProfileContainer {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .avatar {
+        @include avatar;
+    
+        width: 100px;
+        height: 100px;
+    }
+
+    .field {
+        width: 100%;
+        border-bottom: 1px solid #EAEAEA;
+        display: flex;
+        justify-content: space-between;
+
+        &:not(:first-child) {
+            margin-top: 12px;
+        }
+
+        input {
+            color: #999999;
+            border: none;
+            outline: none;
+        }
+    }
+
+    button {
+        @include login-register-form-button;
+
+        margin-top: 32px;
+    }
+}

@@ -1,0 +1,20 @@
+@mixin login-register-form-button {
+    cursor: pointer;
+    color: white;
+    background: #3369F3;
+    border-radius: 8px;
+    padding: 12px 70px;
+    outline: none;
+    border: none;
+}
+
+@mixin input-form($colorBorder) {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid $colorBorder;
+}
+
+@mixin avatar {
+    border-radius: 50%;
+    background: #EFEFEF;
+}
