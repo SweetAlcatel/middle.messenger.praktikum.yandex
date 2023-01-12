@@ -1,9 +1,5 @@
-import Handlebars from "handlebars";
-import signUpHTML from "bundle-text:./signUp.hbs";
+import signUpHTML from "./signUp.hbs";
 
 export const SignUpPage = () => {
-  const compile = Handlebars.compile(signUpHTML);
-  const resultPage = compile();
-
-  return resultPage;
+  return signUpHTML();
 };

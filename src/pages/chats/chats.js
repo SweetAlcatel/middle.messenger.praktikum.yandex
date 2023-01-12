@@ -1,12 +1,8 @@
-import Handlebars from "handlebars";
-import chatsHTML from "bundle-text:./chats.hbs";
+import chatsHTML from "./chats.hbs";
 
 export const ChatsPage = () => {
-  const compile = Handlebars.compile(chatsHTML);
-  const resultPage = compile({
+  return chatsHTML({
     name: "Владимир",
     isChat: true,
   });
-
-  return resultPage;
 };

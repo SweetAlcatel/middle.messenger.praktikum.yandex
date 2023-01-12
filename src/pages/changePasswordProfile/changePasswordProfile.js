@@ -1,9 +1,5 @@
-import Handlebars from "handlebars";
-import changePasswordProfileHTML from "bundle-text:./changePasswordProfile.hbs";
+import changePasswordProfileHTML from "./changePasswordProfile.hbs";
 
 export const ChangePasswordProfilePage = () => {
-  const compile = Handlebars.compile(changePasswordProfileHTML);
-  const resultPage = compile();
-
-  return resultPage;
+  return changePasswordProfileHTML();
 };
