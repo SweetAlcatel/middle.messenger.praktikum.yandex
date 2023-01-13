@@ -7,7 +7,7 @@ import { ChangeDataProfilePage } from "./pages/changeDataProfile/changeDataProfi
 import { ChangePasswordProfilePage } from "./pages/changePasswordProfile/changePasswordProfile";
 import { ChatsPage } from "./pages/chats/chats";
 
-const root = document.getElementById("root");
+const root = document.getElementById("root") as HTMLElement;
 
 root.innerHTML = AllPages();
 
