@@ -1,15 +1,32 @@
-import errorHTML from "./error.hbs";
+import errorTemplate from "bundle-text:./error.hbs";
+import { Block } from "../../utils/block";
 
-export const ClientErrorPage = () => {
-  return errorHTML({
-    errorCode: "400",
-    errorMessage: "Вы не туда попали",
-  });
-};
+class ClientErrorPage extends Block {
+  constructor(props) {
+    super("div", props);
+  }
 
-export const ServerErrorPage = () => {
-  return errorHTML({
-    errorCode: "500",
-    errorMessage: "Мы уже фиксим",
-  });
-};
+  render() {
+    return this.compile(errorTemplate, { ...this.props });
+  }
+}
+
+class ServerErrorPage extends Block {
+  constructor(props) {
+    super("div", props);
+  }
+
+  render() {
+    return this.compile(errorTemplate, { ...this.props });
+  }
+}
+
+export const clientErrorPage = new ClientErrorPage({
+  errorCode: "400",
+  errorMessage: "Вы не туда попали",
+});
+
+export const serverErrorPage = new ServerErrorPage({
+  errorCode: "500",
+  errorMessage: "Мы уже фиксим",
+});

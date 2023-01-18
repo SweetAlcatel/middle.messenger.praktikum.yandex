@@ -1,5 +1,14 @@
-import allPagesHTML from "./allPages.hbs";
+import allPagesTemplate from "bundle-text:./allPages.hbs";
+import { Block } from "../../utils/block";
 
-export const AllPages = () => {
-  return allPagesHTML();
-};
+class AllPages extends Block {
+  constructor(props) {
+    super("div", props);
+  }
+
+  render() {
+    return this.compile(allPagesTemplate, { ...this.props });
+  }
+}
+
+export const allPages = new AllPages({});

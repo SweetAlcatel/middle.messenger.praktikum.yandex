@@ -1,7 +1,15 @@
-import signUpHTML from "./signUp.hbs";
+import signUpHTML from "bundle-text:./signUp.hbs";
+import { Block } from "../../utils/block";
 
-export const SignUpPage = () => {
-  const page = signUpHTML();
+class SignUpPage extends Block {
+  constructor(props) {
+    super("div", props);
+  }
+  render() {
+    return this.compile(signUpHTML, { ...this.props });
+  }
+}
 
-  return page;
-};
+console.log(typeof signUpHTML);
+
+export const signUpPage = new SignUpPage({});

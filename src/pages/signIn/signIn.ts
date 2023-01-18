@@ -1,5 +1,14 @@
-import loginHTML from "./signIn.hbs";
+import loginTemplate from "bundle-text:./signIn.hbs";
+import { Block } from "../../utils/block";
 
-export const SignInPage = () => {
-  return loginHTML();
-};
+class SignInPage extends Block {
+  constructor(props) {
+    super("div", props);
+  }
+
+  render() {
+    return this.compile(loginTemplate, { ...this.props });
+  }
+}
+
+export const signInPage = new SignInPage({});

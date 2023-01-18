@@ -1,16 +1,19 @@
 import { Block } from "../../utils/block";
-import buttonTemplate from "./button.hbs";
+import buttonTemplate from "bundle-text:./button.hbs";
+import Handlebars from "handlebars";
 import { render } from "../../utils/render";
 
-class Button extends Block {
+export class Button extends Block {
   constructor(props) {
-    // Создаём враппер DOM-элемент button
     super("button", props);
   }
 
   render() {
-    const { text } = this.props;
-    return buttonTemplate({ text });
+    const comp = Handlebars.compile(buttonTemplate);
+    const result = comp({
+      ...this.props,
+    });
+    return result;
   }
 }
 
