@@ -1,7 +1,5 @@
 import { Block } from "../../utils/block";
 import buttonTemplate from "bundle-text:./button.hbs";
-import Handlebars from "handlebars";
-import { render } from "../../utils/render";
 
 export class Button extends Block {
   constructor(props) {
@@ -9,21 +7,15 @@ export class Button extends Block {
   }
 
   render() {
-    const comp = Handlebars.compile(buttonTemplate);
-    const result = comp({
-      ...this.props,
-    });
-    return result;
+    return this.compile(buttonTemplate, { ...this.props });
   }
 }
 
 export const button = new Button({
-  text: "test button",
+  text: "Зарегистрироваться",
   events: {
     click: (event) => {
       console.log(event);
     },
   },
 });
-
-render(".root", button);

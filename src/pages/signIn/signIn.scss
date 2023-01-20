@@ -24,6 +24,10 @@
         input {
             @include input-form(blue);
         }
+
+        input:invalid {
+            border-bottom: 1px solid red;
+        }
     }
 
     button {

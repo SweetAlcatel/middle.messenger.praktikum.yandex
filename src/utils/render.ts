@@ -4,7 +4,7 @@ export function render(query, block) {
   // Можно завязаться на реализации вашего класса Block
   root.appendChild(block.getContent());
 
-  block.dispatchComponentDidMount();
+  // block.dispatchComponentDidMount();
 
   return root;
 }

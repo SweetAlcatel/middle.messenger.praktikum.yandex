@@ -61,9 +61,10 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     this.componentDidMount();
 
-    Object.values(this.children).forEach((child) => {
-      child.dispatchComponentDidMount();
-    });
+    // пока комментарий, надо бы разобраться
+    // Object.values(this.children).forEach((child) => {
+    //   child.dispatchComponentDidMount();
+    // });
   }
 
   componentDidMount(oldProps?: any) {}

@@ -1,0 +1,9 @@
+@import "../../mixins/mixins.scss";
+
+.inputSubmit {
+    @include login-register-form-button;
+}
+
+.inputEnter {
+    @include input-form(black);
+}

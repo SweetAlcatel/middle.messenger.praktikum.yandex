@@ -24,15 +24,13 @@
         input {
             @include input-form(blue);
         }
+
+        input:invalid {
+            border-bottom: 1px solid red;
+        }
     }
 
     .field:not(:first-child) {
         margin-top: 8px;
-    }
-
-    button {
-        @include login-register-form-button;
-        
-        margin: 16px 0;
     }
 }
