@@ -1,4 +1,8 @@
 {
+  "include": ["./**/*.ts"],
+  "exclude": [
+    "node_modules/**/*"
+  ],
   "compilerOptions": {
     "lib": [
       "ESNext",
@@ -25,9 +29,5 @@
     "strictNullChecks": true,
     "noImplicitReturns": true,
     "noUncheckedIndexedAccess": true,
-  },
-  "include": ["./**/*.ts"],
-  "exclude": [
-    "node_modules/**/*"
-  ]
+  }
 }
