@@ -1,4 +1,6 @@
-export function render(query, block) {
+import { FixMeLater } from "src/types/request";
+
+export function render(query: FixMeLater, block: FixMeLater) {
   const root = document.querySelector(query);
 
   // Можно завязаться на реализации вашего класса Block

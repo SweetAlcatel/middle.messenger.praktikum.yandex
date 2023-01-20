@@ -1,6 +1,6 @@
 import { RequestOptions, Methods } from "../types/request";
 
-function queryStringify(data) {
+function queryStringify(data: { [key: string]: any }) {
   if (typeof data !== "object") {
     throw new Error("data должна быть объектом");
   }
@@ -12,7 +12,7 @@ function queryStringify(data) {
 }
 
 class HTTPTransport {
-  get = (url, options) => {
+  get = (url: string, options: RequestOptions) => {
     return this.request(url, {
       ...options,
       method: Methods.GET,
@@ -20,7 +20,7 @@ class HTTPTransport {
     });
   };
 
-  post = (url, options) => {
+  post = (url: string, options: RequestOptions) => {
     return this.request(url, {
       ...options,
       method: Methods.POST,
@@ -28,7 +28,7 @@ class HTTPTransport {
     });
   };
 
-  put = (url, options) => {
+  put = (url: string, options: RequestOptions) => {
     return this.request(url, {
       ...options,
       method: Methods.PUT,
@@ -36,7 +36,7 @@ class HTTPTransport {
     });
   };
 
-  delete = (url, options) => {
+  delete = (url: string, options: RequestOptions) => {
     return this.request(url, {
       ...options,
       method: Methods.DELETE,
@@ -44,7 +44,7 @@ class HTTPTransport {
     });
   };
 
-  request = (url, options: RequestOptions) => {
+  request = (url: string, options: RequestOptions) => {
     const { headers, method, data, timeout } = options;
 
     return new Promise(function (resolve, reject) {

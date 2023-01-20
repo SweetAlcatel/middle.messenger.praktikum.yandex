@@ -17,7 +17,9 @@ switch (window.location.pathname) {
     break;
   case "/registration":
     render(".root", signUpPage);
-    console.log(new FormData(document.querySelector("form")));
+    console.log(
+      new FormData(document.querySelector("form") as HTMLFormElement)
+    );
     break;
   case "/login":
     render(".root", signInPage);

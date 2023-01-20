@@ -4,7 +4,7 @@ export enum Methods {
   PUT = "PUT",
   DELETE = "DELETE",
 }
-type FixMeLater = any;
+export type FixMeLater = any;
 
 export type RequestOptions = {
   timeout: number;

@@ -1,4 +1,5 @@
 @import "../../scssPackages/mixins";
+@import "../../scssPackages/variables";
 
 .loginWrapper {
     width: 100vw;
@@ -22,11 +23,11 @@
         flex-direction: column;
 
         input {
-            @include input-form(blue);
+            @include input-form($input-form-color);
         }
 
         input:invalid {
-            border-bottom: 1px solid red;
+            border-bottom: 1px solid $incorrect-color;
         }
     }
 
