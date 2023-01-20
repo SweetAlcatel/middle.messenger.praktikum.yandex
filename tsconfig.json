@@ -28,6 +28,6 @@
     "noUnusedParameters": true,
     "strictNullChecks": true,
     "noImplicitReturns": true,
-    "noUncheckedIndexedAccess": true,
+    "noUncheckedIndexedAccess": true
   }
 }
