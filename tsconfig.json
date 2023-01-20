@@ -1,33 +1,33 @@
 {
-    "compilerOptions": {
-      "lib": [
-        "ESNext",
-        "dom"
-      ], 
-      "outDir": "lib", 
-      "removeComments": true, 
-      "target": "ES6", 
-  
-      "baseUrl": "./", 
-      "esModuleInterop": true, 
-      "moduleResolution": "node", 
-      "paths": {}, 
-  
-      "sourceMap": true,
-      "sourceRoot": "/", 
-  
-      "alwaysStrict": true, 
-      "allowUnreachableCode": false, 
+  "compilerOptions": {
+    "lib": [
+      "ESNext",
+      "dom"
+    ], 
+    "outDir": "lib", 
+    "removeComments": true, 
+    "target": "ES6", 
 
-      "noImplicitAny": true,
-      "noUnusedLocals": true,
-      "noUnusedParameters": true,
-      "strictNullChecks": true,
-      "noImplicitReturns": true,
-      "noUncheckedIndexedAccess": true,
-    },
-    "include": ["./**/*.ts"],
-    "exclude": [
-      "node_modules/**/*"
-    ]
-  }
+    "baseUrl": "./", 
+    "esModuleInterop": true, 
+    "moduleResolution": "node", 
+    "paths": {}, 
+
+    "sourceMap": true,
+    "sourceRoot": "/", 
+
+    "alwaysStrict": true, 
+    "allowUnreachableCode": false, 
+
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictNullChecks": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+  },
+  "include": ["./**/*.ts"],
+  "exclude": [
+    "node_modules/**/*"
+  ]
+}
