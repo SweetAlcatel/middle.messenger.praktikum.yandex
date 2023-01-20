@@ -1,4 +1,4 @@
-@import "../../mixins/mixins";
+@import "../../scssPackages/mixins";
 
 .inputSubmit {
     @include login-register-form-button;
