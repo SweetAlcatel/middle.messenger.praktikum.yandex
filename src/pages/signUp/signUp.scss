@@ -21,14 +21,6 @@
     .field {
         display: flex;
         flex-direction: column;
-
-        input {
-            @include input-form($input-form-color);
-        }
-
-        input:invalid {
-            border-bottom: 1px solid $incorrect-color;
-        }
     }
 
     .field:not(:first-child) {
