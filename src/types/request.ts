@@ -1,10 +1,11 @@
+import { FixMeLater } from "./index";
+
 export enum Methods {
   GET = "GET",
   POST = "POST",
   PUT = "PUT",
   DELETE = "DELETE",
 }
-export type FixMeLater = any;
 
 export type RequestOptions = {
   timeout: number;

@@ -3,13 +3,13 @@
         <h2>Вход</h2>
         <div class="field">
             <label for="login">Логин</label>
-            <input type="text" id="login" name="login" pattern='/^[a-zA-Z0-9]+$/'/>
+            {{{inputLogin}}}
         </div>
         <div class="field">
             <label for="password">Пароль</label>
-            <input type="password" id="password" name="password" pattern="/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/"/>
+            {{{inputPassword}}}
         </div>
-        <button>Авторизоваться</button>
+        {{{button}}}
         <a>Нет аккаунта?</a>
     </form>
 </main>

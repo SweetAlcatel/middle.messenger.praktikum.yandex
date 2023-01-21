@@ -1,6 +1,7 @@
 import { EventBus } from "./eventBus";
 import { v4 as makeUUID } from "uuid";
 import Handlebars from "handlebars";
+import { FixMeLater, Nullable } from "../types/index";
 
 class Block {
   static EVENTS = {
@@ -10,12 +11,14 @@ class Block {
     FLOW_RENDER: "flow:render",
   };
 
-  _id = null;
-  _element = null;
-  _meta = null;
-  props: any; // прокси-объект свойств
+  _id: Nullable<string> = null;
+  _element: Nullable<FixMeLater> = null;
+  _meta: Nullable<FixMeLater> = null;
+  props: {
+    [key: string]: FixMeLater;
+  }; // прокси-объект свойств
   children: any;
-  eventBus: any;
+  eventBus: () => EventBus;
 
   constructor(tagName = "div", propsAndChildren = {}) {
     const eventBus = new EventBus();
@@ -40,7 +43,7 @@ class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _registerEvents(eventBus) {
+  _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -67,9 +70,10 @@ class Block {
     // });
   }
 
+  //@ts-ignore
   componentDidMount(oldProps?: any) {}
 
-  _componentDidUpdate(oldProps, newProps) {
+  _componentDidUpdate(oldProps: FixMeLater, newProps: FixMeLater) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -77,11 +81,12 @@ class Block {
     this._render();
   }
 
-  componentDidUpdate(oldProps, newProps) {
+  //@ts-ignore
+  componentDidUpdate(oldProps: FixMeLater, newProps: FixMeLater) {
     return true;
   }
 
-  setProps = (nextProps) => {
+  setProps = (nextProps: FixMeLater) => {
     if (!nextProps) {
       return;
     }
@@ -110,7 +115,7 @@ class Block {
     return this.element;
   }
 
-  _makePropsProxy(props) {
+  _makePropsProxy(props: FixMeLater) {
     // Можно и так передать this
     // Такой способ больше не применяется с приходом ES6+
     const self = this;
@@ -132,7 +137,7 @@ class Block {
       },
     });
   }
-  _createDocumentElement(tagName) {
+  _createDocumentElement(tagName: FixMeLater) {
     // Можно сделать метод, который через фрагменты в цикле создает сразу несколько блоков
     const element = document.createElement(tagName);
     element.setAttribute("data-id", this._id);

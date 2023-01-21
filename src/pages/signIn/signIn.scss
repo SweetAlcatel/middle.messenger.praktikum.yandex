@@ -25,10 +25,6 @@
         input {
             @include input-form($input-form-color);
         }
-
-        input:invalid {
-            border-bottom: 1px solid $incorrect-color;
-        }
     }
 
     button {

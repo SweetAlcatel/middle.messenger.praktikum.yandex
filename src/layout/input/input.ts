@@ -3,7 +3,7 @@ import { Block } from "../../utils/block";
 
 export class Input extends Block {
   constructor(props) {
-    super("div", props);
+    super("input", props);
   }
 
   render() {

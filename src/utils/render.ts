@@ -1,4 +1,4 @@
-import { FixMeLater } from "src/types/request";
+import { FixMeLater } from "../types/index";
 
 export function render(query: FixMeLater, block: FixMeLater) {
   const root = document.querySelector(query);

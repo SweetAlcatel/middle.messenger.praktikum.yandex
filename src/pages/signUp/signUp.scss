@@ -21,6 +21,18 @@
     .field {
         display: flex;
         flex-direction: column;
+
+        input {
+            @include input-form(blue);
+        }
+
+        input:invalid {
+            border-bottom: 1px solid red;
+        }
+    }
+
+    button {
+        @include login-register-form-button;
     }
 
     .field:not(:first-child) {
