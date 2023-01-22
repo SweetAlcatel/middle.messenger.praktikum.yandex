@@ -1,0 +1,14 @@
+@import "../../scssPackages/mixins";
+@import "../../scssPackages/variables";
+
+.inputSubmit {
+    @include login-register-form-button;
+}
+
+.inputEnter {
+    @include input-form($input-form-color);
+
+    &:invalid {
+        border-bottom: 1px solid $incorrect-color;
+    }
+}

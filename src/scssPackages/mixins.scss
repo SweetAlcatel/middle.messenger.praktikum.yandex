@@ -1,7 +1,7 @@
 @mixin login-register-form-button {
     cursor: pointer;
     color: white;
-    background: #3369F3;
+    background: #3369f3;
     border-radius: 8px;
     padding: 12px 70px;
     outline: none;
@@ -16,5 +16,5 @@
 
 @mixin avatar {
     border-radius: 50%;
-    background: #EFEFEF;
+    background: #efefef;
 }

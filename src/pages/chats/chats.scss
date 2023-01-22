@@ -1,4 +1,4 @@
-@import "../../mixins/mixins.scss";
+@import "../../scssPackages/mixins";
 
 .chatsContainer {
     width: 100vw;
@@ -10,15 +10,15 @@
 .listChats {
     display: flex;
     flex-direction: column;
-    border-right: 1px solid #EAEAEA;
-    background: #FBFBFB;
+    border-right: 1px solid #eaeaea;
+    background: #fbfbfb;
 
     li {
         cursor: pointer;
         display: flex;
         align-items: center;
         padding: 10px;
-        border-top: 1px solid #EAEAEA;
+        border-top: 1px solid #eaeaea;
 
         .avatar {
             @include avatar;
@@ -29,6 +29,7 @@
 
         .info {
             margin-left: 12px;
+
             h4 {
                 font-weight: 600;
                 font-size: 13px;
@@ -39,7 +40,7 @@
                 font-weight: 500;
                 font-size: 12px;
                 line-height: 15px;
-                color: #999999;
+                color: #999;
             }
         }
 
@@ -48,9 +49,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            
+
             span:first-child {
-                color: #999999;
+                color: #999;
                 margin-bottom: 12px;
             }
 
@@ -63,20 +64,19 @@
                 background: blue;
             }
         }
-
     }
 
     a {
         margin: 24px 24px 0 0;
         align-self: flex-end;
-        color: #999999;
+        color: #999;
     }
 
     input {
-        margin: 24px 0 12px 0;
+        margin: 24px 0 12px;
         outline: none;
         border: none;
-        background: #EFEFEF;
+        background: #efefef;
         border-radius: 5px;
         padding: 10px;
     }
@@ -87,10 +87,10 @@
     grid-template-rows: 1fr 10fr 1fr;
     padding: 0 20px;
 
-    .chat-header {
+    .chatHeader {
         display: flex;
         align-items: center;
-        border-bottom: 1px solid #EAEAEA;
+        border-bottom: 1px solid #eaeaea;
 
         .avatar {
             @include avatar;
@@ -108,11 +108,11 @@
         }
     }
 
-    .chat-footer {
+    .chatFooter {
         padding: 12px 0;
         display: flex;
         align-items: center;
-        border-top: 1px solid #EAEAEA;
+        border-top: 1px solid #eaeaea;
 
         .svg {
             width: 32px;
@@ -125,7 +125,7 @@
             border: none;
             border-radius: 30px;
             width: 100%;
-            background: #EFEFEF;
+            background: #efefef;
             padding: 10px 20px;
             margin: 0 12px;
         }
