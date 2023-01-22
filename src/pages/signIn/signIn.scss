@@ -1,4 +1,5 @@
-@import '../../mixins/mixins.scss';
+@import "../../scssPackages/mixins";
+@import "../../scssPackages/variables";
 
 .loginWrapper {
     width: 100vw;
@@ -9,12 +10,12 @@
 }
 
 .loginContainer {
-    padding: 50px 30px 30px 30px;
+    padding: 50px 30px 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+    background: #fff;
+    box-shadow: 0 0 6px rgb(0 0 0 / 14%);
     border-radius: 12px;
 
     .field {
@@ -22,7 +23,7 @@
         flex-direction: column;
 
         input {
-            @include input-form(blue);
+            @include input-form($input-form-color);
         }
     }
 

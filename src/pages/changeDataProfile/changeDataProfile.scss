@@ -1,4 +1,4 @@
-@import '../../mixins/mixins.scss';
+@import "../../scssPackages/mixins";
 
 .changeDataProfileWrapper {
     width: 100vw;
@@ -17,14 +17,14 @@
 
     .avatar {
         @include avatar;
-    
+
         width: 100px;
         height: 100px;
     }
 
     .field {
         width: 100%;
-        border-bottom: 1px solid #EAEAEA;
+        border-bottom: 1px solid #eaeaea;
         display: flex;
         justify-content: space-between;
 
@@ -33,9 +33,10 @@
         }
 
         input {
-            color: #999999;
+            color: #999;
             border: none;
             outline: none;
+            text-align: end;
         }
     }
 
