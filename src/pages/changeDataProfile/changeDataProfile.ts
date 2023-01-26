@@ -1,8 +1,10 @@
 import changeDataProfileTemplate from "bundle-text:./changeDataProfile.hbs";
 import { Block } from "../../utils/block";
 
+interface IChangeDataProfilePage {}
+
 class ChangeDataProfilePage extends Block {
-  constructor(props) {
+  constructor(props: IChangeDataProfilePage) {
     super("div", props);
   }
 

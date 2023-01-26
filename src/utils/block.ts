@@ -1,9 +1,16 @@
 import { EventBus } from "./eventBus";
 import { v4 as makeUUID } from "uuid";
 import Handlebars from "handlebars";
-import { FixMeLater, Nullable } from "../types/index";
+import { Children, FixMeLater, Nullable, Props } from "../types/index";
 
-class Block {
+interface IBlock {
+  props: Props;
+  children: Children;
+  eventBus: () => EventBus;
+  id: Nullable<string>;
+}
+
+class Block implements IBlock {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
@@ -12,13 +19,11 @@ class Block {
   };
 
   _id: Nullable<string> = null;
-  _element: Nullable<FixMeLater> = null;
-  _meta: Nullable<FixMeLater> = null;
-  props: {
-    [key: string]: FixMeLater;
-  }; // прокси-объект свойств
-  children: any;
-  eventBus: () => EventBus;
+  _element: Nullable<HTMLElement> = null;
+  _meta: Nullable<{ tagName: string; props: Props }> = null;
+  props; // прокси-объект свойств
+  children;
+  eventBus;
 
   constructor(tagName = "div", propsAndChildren = {}) {
     const eventBus = new EventBus();
@@ -43,24 +48,27 @@ class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _registerEvents(eventBus: EventBus) {
+  public get id() {
+    return this._id;
+  }
+
+  private _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  _createResources() {
-    const { tagName } = this._meta;
-    this._element = this._createDocumentElement(tagName);
+  private _createResources() {
+    this._element = this._createDocumentElement(this._meta!.tagName);
   }
 
-  init() {
+  public init() {
     this._createResources();
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidMount() {
+  private _componentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     this.componentDidMount();
 
@@ -73,7 +81,7 @@ class Block {
   //@ts-ignore
   componentDidMount(oldProps?: any) {}
 
-  _componentDidUpdate(oldProps: FixMeLater, newProps: FixMeLater) {
+  private _componentDidUpdate(oldProps: FixMeLater, newProps: FixMeLater) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -82,11 +90,11 @@ class Block {
   }
 
   //@ts-ignore
-  componentDidUpdate(oldProps: FixMeLater, newProps: FixMeLater) {
+  public componentDidUpdate(oldProps: FixMeLater, newProps: FixMeLater) {
     return true;
   }
 
-  setProps = (nextProps: FixMeLater) => {
+  public setProps = (nextProps: FixMeLater) => {
     if (!nextProps) {
       return;
     }
@@ -97,39 +105,34 @@ class Block {
     return this._element;
   }
 
-  _render() {
-    const block = this.render(); // render теперь возвращает DocumentFragment
+  private _render() {
+    const block = this.render();
 
     // this._removeEvents();
-    this._element.innerHTML = ""; // удаляем предыдущее содержимое
+    this._element!.innerHTML = ""; // удаляем предыдущее содержимое
 
-    this._element.appendChild(block);
+    this._element?.appendChild(block as DocumentFragment);
 
     this._addEvents();
   }
 
   // определяется пользователем
-  render() {}
+  protected render(): DocumentFragment | void {}
 
-  getContent() {
+  public getContent() {
     return this.element;
   }
 
-  _makePropsProxy(props: FixMeLater) {
-    // Можно и так передать this
-    // Такой способ больше не применяется с приходом ES6+
-    const self = this;
+  private _makePropsProxy(props: Props) {
     return new Proxy(props, {
-      get(target, prop) {
+      get(target, prop: string) {
         const value = target[prop];
         return typeof value === "function" ? value.bind(target) : value;
       },
-      set(target, prop, value) {
+      set(target, prop: string, value) {
         target[prop] = value;
 
-        // Запускаем обновление компоненты
-        // Плохой cloneDeep, в след итерации нужно заставлять добавлять cloneDeep им самим
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target);
+        this.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target);
         return true;
       },
       deleteProperty() {
@@ -137,24 +140,25 @@ class Block {
       },
     });
   }
-  _createDocumentElement(tagName: FixMeLater) {
-    // Можно сделать метод, который через фрагменты в цикле создает сразу несколько блоков
+
+  private _createDocumentElement(tagName: string): HTMLElement {
     const element = document.createElement(tagName);
-    element.setAttribute("data-id", this._id);
+    element.setAttribute("data-id", this._id as string);
     return element;
   }
 
-  _addEvents() {
+  private _addEvents() {
     const { events = {} } = this.props;
 
     Object.keys(events).forEach((eventName) => {
-      this._element.addEventListener(eventName, events[eventName]);
+      this._element &&
+        this._element.addEventListener(eventName, events[eventName]);
     });
   }
 
-  _getChildren(propsAndChildren) {
-    const children = {};
-    const props = {};
+  private _getChildren(propsAndChildren: Children) {
+    const children: Children = {};
+    const props: Props = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
@@ -167,14 +171,16 @@ class Block {
     return { children, props };
   }
 
-  compile(template, props?) {
+  public compile(template: string, props?: Props) {
     const propsAndStubs = { ...props };
 
     Object.entries(this.children).forEach(([key, child]) => {
       propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
     });
 
-    const fragment = this._createDocumentElement("template");
+    const fragment = this._createDocumentElement(
+      "template"
+    ) as HTMLTemplateElement;
 
     const comp = Handlebars.compile(template);
 
@@ -185,7 +191,7 @@ class Block {
     Object.values(this.children).forEach((child) => {
       const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
 
-      stub.replaceWith(child.getContent());
+      stub?.replaceWith(child.getContent() as Node);
     });
 
     return fragment.content;

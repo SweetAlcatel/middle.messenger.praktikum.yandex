@@ -1,8 +1,10 @@
 import errorTemplate from "bundle-text:./error.hbs";
 import { Block } from "../../utils/block";
 
+interface IClientErrorPage {}
+
 class ClientErrorPage extends Block {
-  constructor(props) {
+  constructor(props: IClientErrorPage) {
     super("div", props);
   }
 
@@ -11,8 +13,10 @@ class ClientErrorPage extends Block {
   }
 }
 
+interface IServerErrorPage {}
+
 class ServerErrorPage extends Block {
-  constructor(props) {
+  constructor(props: IServerErrorPage) {
     super("div", props);
   }
 
