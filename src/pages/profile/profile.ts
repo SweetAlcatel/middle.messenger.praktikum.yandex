@@ -1,8 +1,10 @@
 import profileTemplate from "bundle-text:./profile.hbs";
 import { Block } from "../../utils/block";
 
+interface IProfilePage {}
+
 class ProfilePage extends Block {
-  constructor(props) {
+  constructor(props: IProfilePage) {
     super("div", props);
   }
 

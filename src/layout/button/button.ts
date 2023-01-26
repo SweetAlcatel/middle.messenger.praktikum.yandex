@@ -1,8 +1,15 @@
 import { Block } from "../../utils/block";
 import buttonTemplate from "bundle-text:./button.hbs";
 
+interface IButton {
+  text: string;
+  events: {
+    [key: string]: (payload: any) => void;
+  };
+}
+
 export class Button extends Block {
-  constructor(props) {
+  constructor(props: IButton) {
     super("button", props);
   }
 
