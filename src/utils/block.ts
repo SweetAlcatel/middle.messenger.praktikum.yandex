@@ -3,7 +3,14 @@ import { v4 as makeUUID } from "uuid";
 import Handlebars from "handlebars";
 import { Children, FixMeLater, Nullable, Props } from "../types/index";
 
-class Block {
+interface IBlock {
+  props: Props;
+  children: Children;
+  eventBus: () => EventBus;
+  id: Nullable<string>;
+}
+
+class Block implements IBlock {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
@@ -14,9 +21,9 @@ class Block {
   _id: Nullable<string> = null;
   _element: Nullable<HTMLElement> = null;
   _meta: Nullable<{ tagName: string; props: Props }> = null;
-  props: Props; // прокси-объект свойств
-  children: Children;
-  eventBus: () => EventBus;
+  props; // прокси-объект свойств
+  children;
+  eventBus;
 
   constructor(tagName = "div", propsAndChildren = {}) {
     const eventBus = new EventBus();
@@ -39,6 +46,10 @@ class Block {
     this._registerEvents(eventBus);
 
     eventBus.emit(Block.EVENTS.INIT);
+  }
+
+  public get id() {
+    return this._id;
   }
 
   private _registerEvents(eventBus: EventBus) {
@@ -100,13 +111,13 @@ class Block {
     // this._removeEvents();
     this._element!.innerHTML = ""; // удаляем предыдущее содержимое
 
-    this._element?.appendChild(block as HTMLElement);
+    this._element?.appendChild(block as DocumentFragment);
 
     this._addEvents();
   }
 
   // определяется пользователем
-  protected render(): HTMLElement | void {}
+  protected render(): DocumentFragment | void {}
 
   public getContent() {
     return this.element;
@@ -130,7 +141,7 @@ class Block {
     });
   }
 
-  private _createDocumentElement(tagName: string) {
+  private _createDocumentElement(tagName: string): HTMLElement {
     const element = document.createElement(tagName);
     element.setAttribute("data-id", this._id as string);
     return element;
@@ -167,7 +178,9 @@ class Block {
       propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
     });
 
-    const fragment = this._createDocumentElement("template");
+    const fragment = this._createDocumentElement(
+      "template"
+    ) as HTMLTemplateElement;
 
     const comp = Handlebars.compile(template);
 
@@ -178,7 +191,7 @@ class Block {
     Object.values(this.children).forEach((child) => {
       const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
 
-      stub?.replaceWith(child.getContent());
+      stub?.replaceWith(child.getContent() as Node);
     });
 
     return fragment.content;

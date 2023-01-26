@@ -7,7 +7,7 @@ export type Props = {
 };
 
 export type Children = {
-  [key: string]: Block | Block[];
+  [key: string]: Block;
 };
 
 export type Nullable<T> = T | null;

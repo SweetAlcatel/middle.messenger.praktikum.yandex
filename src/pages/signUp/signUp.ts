@@ -4,8 +4,10 @@ import { Input } from "../../layout/input/input";
 import { Button } from "../../layout/button/button";
 import { FixMeLater } from "src/types";
 
+interface ISignUpPage {}
+
 class SignUpPage extends Block {
-  constructor(props) {
+  constructor(props: ISignUpPage) {
     super("div", props);
   }
 
