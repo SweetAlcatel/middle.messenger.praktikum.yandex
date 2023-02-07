@@ -1,18 +1,16 @@
 import profileTemplate from "bundle-text:./profile.hbs";
 import { Block } from "../../utils/block";
 
-interface IProfilePage {}
+export class ProfilePage extends Block {
+  props = {
+    name: "Dima",
+  };
 
-class ProfilePage extends Block {
-  constructor(props: IProfilePage) {
-    super("div", props);
+  constructor() {
+    super("div");
   }
 
   render() {
     return this.compile(profileTemplate, { ...this.props });
   }
 }
-
-export const profilePage = new ProfilePage({
-  name: "Dima",
-});

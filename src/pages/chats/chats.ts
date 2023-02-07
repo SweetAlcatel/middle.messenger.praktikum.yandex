@@ -2,29 +2,40 @@ import chatsTemplate from "bundle-text:./chats.hbs";
 import { Block } from "../../utils/block";
 import { Input } from "../../layout/input/input";
 
-interface IChats {}
+export class Chats extends Block {
+  props = {
+    name: "Dima",
+    isChat: true,
+    inputMessage: new Input({
+      type: "text",
+      name: "message",
+      id: "message",
+      events: {
+        focus: () => console.log("focus"),
+        blur: () => console.log("blur"),
+      },
+      placeholder: "Введите сообщение",
+    }),
+  };
 
-class Chats extends Block {
-  constructor(props: IChats) {
-    super("div", props);
+  constructor() {
+    super("div", {
+      name: "Dima",
+      isChat: true,
+      inputMessage: new Input({
+        type: "text",
+        name: "message",
+        id: "message",
+        events: {
+          focus: () => console.log("focus"),
+          blur: () => console.log("blur"),
+        },
+        placeholder: "Введите сообщение",
+      }),
+    });
   }
 
   render() {
     return this.compile(chatsTemplate, { ...this.props });
   }
 }
-
-export const chatsPage = new Chats({
-  name: "Dima",
-  isChat: true,
-  inputMessage: new Input({
-    type: "text",
-    name: "message",
-    id: "message",
-    events: {
-      focus: () => console.log("focus"),
-      blur: () => console.log("blur"),
-    },
-    placeholder: "Введите сообщение",
-  }),
-});

@@ -1,11 +1,9 @@
 import allPagesTemplate from "bundle-text:./allPages.hbs";
 import { Block } from "../../utils/block";
 
-interface IAllPages {}
-
 class AllPages extends Block {
-  constructor(props: IAllPages) {
-    super("div", props);
+  constructor() {
+    super("div");
   }
 
   render() {
@@ -13,4 +11,4 @@ class AllPages extends Block {
   }
 }
 
-export const allPages = new AllPages({});
+export { AllPages };

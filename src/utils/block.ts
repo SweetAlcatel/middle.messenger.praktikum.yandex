@@ -120,7 +120,7 @@ class Block implements IBlock {
   protected render(): DocumentFragment | void {}
 
   public getContent() {
-    return this.element;
+    return this._element;
   }
 
   private _makePropsProxy(props: Props) {
