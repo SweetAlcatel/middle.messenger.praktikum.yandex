@@ -15,7 +15,7 @@ const userFields = [
   "avatar",
   "email",
   "phone",
-] as Array<keyof ProfileProps>;
+];
 
 class ProfilePageBase extends Block<ProfileProps> {
   init() {
@@ -39,14 +39,11 @@ class ProfilePageBase extends Block<ProfileProps> {
     });
   }
 
-  protected componentDidUpdate(
-    oldProps: ProfileProps,
-    newProps: ProfileProps
-  ): boolean {
+  protected componentDidUpdate(oldProps, newProps): boolean {
     /**
      * Обновляем детей
      */
-    (this.children.fields as ProfileField[]).forEach((field, i) => {
+    this.children.fields.forEach((field, i) => {
       field.setProps({ value: newProps[userFields[i]] });
     });
 
