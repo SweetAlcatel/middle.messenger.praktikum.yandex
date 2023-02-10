@@ -15,7 +15,7 @@ interface IInput {
 
 export class Input extends Block {
   constructor(props: IInput) {
-    super("input", props);
+    super("div", props);
   }
 
   render() {

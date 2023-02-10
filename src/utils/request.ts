@@ -54,6 +54,7 @@ class HTTPTransport {
       }
 
       const xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
       const isGet = method === Methods.GET;
 
       xhr.open(method, isGet && !!data ? `${url}${queryStringify(data)}` : url);
@@ -81,4 +82,4 @@ class HTTPTransport {
   };
 }
 
-export { HTTPTransport };
+export const requstInstance = new HTTPTransport();

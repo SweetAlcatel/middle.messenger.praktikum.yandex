@@ -10,6 +10,6 @@ export enum Methods {
 export type RequestOptions = {
   timeout: number;
   method: Methods;
-  data: FixMeLater;
-  headers: FixMeLater;
+  data?: FixMeLater;
+  headers?: FixMeLater;
 };

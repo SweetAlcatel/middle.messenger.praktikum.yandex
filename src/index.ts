@@ -8,7 +8,7 @@ import { ProfilePage } from "./pages/profile/profile";
 import { SignInPage } from "./pages/signIn/signIn";
 import { SignUpPage } from "./pages/signUp/signUp";
 
-const router = new Router(".root");
+export const router = new Router(".root");
 
 router
   .use("/", AllPages)
@@ -18,6 +18,6 @@ router
   .use("/404", ClientErrorPage)
   .use("/500", ServerErrorPage)
   .use("/profile", ProfilePage)
-  .use("/signIn", SignInPage)
-  .use("/signUp", SignUpPage)
+  .use("/login", SignInPage)
+  .use("/registration", SignUpPage)
   .start();
