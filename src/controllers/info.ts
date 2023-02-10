@@ -27,7 +27,7 @@ class InfoController {
     });
   }
 
-  public static changeAvatar(data) {
+  public static changeAvatar(data: any) {
     return requstInstance.put(`${this.host}/user/password`, {
       timeout: 3000,
       method: Methods.PUT,

@@ -7,7 +7,7 @@ interface InputProps {
   type: string;
   placeholder: string;
   events: Record<string, any>;
-  pattern: string;
+  pattern?: string;
 }
 
 export class Input extends Block<InputProps> {
