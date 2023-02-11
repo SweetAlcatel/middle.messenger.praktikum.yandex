@@ -17,7 +17,7 @@ class InfoController {
   }
 
   public static changePassword(data: FixMeLater) {
-    return requstInstance.put(`${this.host}/user/profile/avatar`, {
+    return requstInstance.put(`${this.host}/user/password`, {
       timeout: 3000,
       method: Methods.PUT,
       data: JSON.stringify(data),
