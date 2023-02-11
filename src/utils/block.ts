@@ -1,4 +1,4 @@
-import { EventBus } from "./EventBus";
+import { EventBus } from "./eventBus";
 import Handlebars from "handlebars";
 import { v4 as makeUUID } from "uuid";
 // Нельзя создавать экземпляр данного класса
