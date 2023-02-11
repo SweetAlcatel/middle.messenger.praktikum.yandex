@@ -1,6 +1,6 @@
 import { set } from "./helpers";
-import { EventBus } from "./EventBus";
-import { Block } from "./Block";
+import { EventBus } from "./eventBus";
+import { Block } from "./block";
 import { FixMeLater } from "src/types";
 
 export enum StoreEvents {
