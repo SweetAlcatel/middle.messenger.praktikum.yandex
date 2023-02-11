@@ -1,6 +1,6 @@
 import { Block } from "../../utils/Block";
 import template from "bundle-text:./profile.hbs";
-import store, { withStore } from "../../utils/Store";
+import store, { withStore } from "../../utils/store";
 import { Button } from "../../layout/button/button";
 import { Field } from "../../layout/field/field";
 import { UserController } from "../../controllers/user";

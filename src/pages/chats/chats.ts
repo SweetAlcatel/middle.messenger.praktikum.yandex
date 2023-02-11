@@ -2,7 +2,7 @@ import chatsTemplate from "bundle-text:./chats.hbs";
 import { Block } from "../../utils/block";
 import { Chat } from "../../layout/chat/chat";
 import { ChatsController } from "../../controllers/chats";
-import store, { withStore } from "../../utils/Store";
+import store, { withStore } from "../../utils/store";
 
 export class ChatsBase extends Block {
   constructor() {

@@ -1,7 +1,7 @@
 import changeDataProfileTemplate from "bundle-text:./changeDataProfile.hbs";
 import { UserController } from "../../controllers/user";
 import { Block } from "../../utils/block";
-import store, { withStore } from "../../utils/Store";
+import store, { withStore } from "../../utils/store";
 import { Input } from "../../layout/input/input";
 import { Button } from "../../layout/button/button";
 import { InfoController } from "../../controllers/info";
