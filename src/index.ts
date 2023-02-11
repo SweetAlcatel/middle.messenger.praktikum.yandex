@@ -1,7 +1,7 @@
 import { AllPages } from "./pages/allPages/allPages";
 import { ChangeDataProfilePage } from "./pages/changeDataProfile/changeDataProfile";
 import { ChangePasswordProfilePage } from "./pages/changePasswordProfile/changePasswordProfile";
-import { Chats } from "./pages/chats/chats";
+import { ChatsPage } from "./pages/chats/chats";
 import { Router } from "./utils/router";
 import { ClientErrorPage, ServerErrorPage } from "./pages/error/error";
 import { ProfilePage } from "./pages/profile/profile";
@@ -14,7 +14,7 @@ router
   .use("/", AllPages)
   .use("/changeData", ChangeDataProfilePage)
   .use("/changePassword", ChangePasswordProfilePage)
-  .use("/chats", Chats)
+  .use("/chats", ChatsPage)
   .use("/404", ClientErrorPage)
   .use("/500", ServerErrorPage)
   .use("/profile", ProfilePage)
