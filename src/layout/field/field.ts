@@ -1,4 +1,4 @@
-import { Block } from "../../utils/Block";
+import { Block } from "../../utils/block";
 import templateField from "bundle-text:./field.hbs";
 import styles from "./field.module.scss";
 

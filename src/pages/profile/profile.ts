@@ -1,4 +1,4 @@
-import { Block } from "../../utils/Block";
+import { Block } from "../../utils/block";
 import template from "bundle-text:./profile.hbs";
 import store, { withStore } from "../../utils/store";
 import { Button } from "../../layout/button/button";
