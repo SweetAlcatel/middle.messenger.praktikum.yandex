@@ -28,7 +28,7 @@ class InfoController {
   }
 
   public static changeAvatar(data: any) {
-    return requstInstance.put(`${this.host}/user/password`, {
+    return requstInstance.put(`${this.host}/user/profile/avatar`, {
       timeout: 3000,
       method: Methods.PUT,
       data: JSON.stringify(data),

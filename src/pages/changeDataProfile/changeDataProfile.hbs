@@ -1,10 +1,12 @@
 <main class="changeDataProfileWrapper">
     <form class="changeDataProfileContainer">
-        <div class="avatar"></div>
+        {{{avatar}}}
         <h2>Изменение данных</h2>
         {{#each fields}}
             {{{ this }}}
         {{/each}}
+        <input type="file" id='changeAvatar'/>
+        {{{saveAvatar}}}
         {{{saveInfo}}}
     </form>
 </main>

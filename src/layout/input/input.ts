@@ -5,8 +5,8 @@ import styles from "./input.module.scss";
 interface InputProps {
   name: string;
   type: string;
-  placeholder: string;
-  events: Record<string, any>;
+  placeholder?: string;
+  events?: Record<string, any>;
   pattern?: string;
 }
 

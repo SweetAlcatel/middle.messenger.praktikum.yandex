@@ -1,0 +1,27 @@
+.messenger {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    padding: 10px 30px;
+}
+
+.messengerMessages {
+    display: flex;
+    flex-direction: column;
+}
+
+.messengerFooter {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    margin-top: auto;
+}
+
+.messengerFooter input {
+    width: 100%;
+    border-radius: 0;
+}
+
+.messengerFooter button {
+    margin-left: auto;
+}

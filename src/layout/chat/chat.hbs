@@ -1,11 +1,6 @@
-<li class="{{styles.chatItem}}">
-    <div class="{{styles.avatar}}"></div>
-        <div class="{{styles.info}}">
-        <h4>Дмитрий</h4>
-        <span>Изображение</span>
-    </div>
-    <div class="{{styles.aboutMessages}}">
-        <span>10:56</span>
-        <span>2</span>
-    </div>
+<li class="{{styles.chatItem}} {{#if isSelected }}{{ styles.chatSelected }}{{/if}}">
+    {{title}}
+    {{#if unread_count }}
+        <span class="{{ styles.chatBadge }}">{{unread_count}}</span>
+    {{/if}}
 </li>

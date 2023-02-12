@@ -1,0 +1,21 @@
+.listChats {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #eaeaea;
+    background: #fbfbfb;
+
+    a {
+        margin: 24px 24px 0 0;
+        align-self: flex-end;
+        color: #999;
+    }
+
+    input {
+        margin: 24px 0 12px;
+        outline: none;
+        border: none;
+        background: #efefef;
+        border-radius: 5px;
+        padding: 10px;
+    }
+}

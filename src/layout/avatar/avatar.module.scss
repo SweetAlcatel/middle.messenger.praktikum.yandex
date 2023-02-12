@@ -1,0 +1,8 @@
+@import "../../scssPackages/mixins";
+
+.avatar {
+    @include avatar;
+
+    width: 100px;
+    height: 100px;
+}

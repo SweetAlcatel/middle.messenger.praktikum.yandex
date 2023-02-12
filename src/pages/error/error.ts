@@ -8,10 +8,7 @@ export class ClientErrorPage extends Block {
   };
 
   constructor() {
-    super("div", {
-      errorCode: "400",
-      errorMessage: "Вы не туда попали",
-    });
+    super("div");
   }
 
   render() {
@@ -26,10 +23,7 @@ export class ServerErrorPage extends Block {
   };
 
   constructor() {
-    super("div", {
-      errorCode: "500",
-      errorMessage: "Мы уже фиксим",
-    });
+    super("div");
   }
 
   render() {

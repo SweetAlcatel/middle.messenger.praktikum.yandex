@@ -1,20 +1,25 @@
 import chatsTemplate from "bundle-text:./chats.hbs";
 import { Block } from "../../utils/block";
-import { Chat } from "../../layout/chat/chat";
 import { ChatsController } from "../../controllers/chats";
-import store, { withStore } from "../../utils/store";
+import { withStore } from "../../utils/store";
+import { ChatsList } from "../../layout/chatList/chatList";
+import { SelectedChat } from "../../layout/selectedChat/selectedChat";
 
 export class ChatsBase extends Block {
   constructor() {
     super("div");
-
-    ChatsController.getChats().then((data: XMLHttpRequest) =>
-      store.set("chats", JSON.parse(data.responseText))
-    );
   }
 
   protected init(): void {
-    this.children.chat = new Chat();
+    this.children.chatsList = new ChatsList({ isLoaded: false });
+
+    this.children.chat = new SelectedChat({});
+
+    ChatsController.getChats().finally(() => {
+      (this.children.chatsList as Block).setProps({
+        isLoaded: true,
+      });
+    });
   }
 
   render() {

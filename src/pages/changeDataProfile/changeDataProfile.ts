@@ -5,6 +5,7 @@ import store, { withStore } from "../../utils/store";
 import { Input } from "../../layout/input/input";
 import { Button } from "../../layout/button/button";
 import { InfoController } from "../../controllers/info";
+import { Avatar } from "../../layout/avatar/avatar";
 
 const userFields = [
   "first_name",
@@ -29,6 +30,8 @@ class ChangeDataProfilePageBase extends Block {
     phone: "",
   };
 
+  avatarPath = "";
+
   protected init(): void {
     UserController.getUser().then((data: XMLHttpRequest) => {
       store.set("user", JSON.parse(data.responseText));
@@ -45,6 +48,20 @@ class ChangeDataProfilePageBase extends Block {
             (this.data[name] = e.target.value),
         },
       });
+    });
+
+    this.children.avatar = new Avatar({
+      path: this.props.avatar,
+    });
+
+    this.children.saveAvatar = new Button({
+      text: "Сохранить аватар",
+      events: {
+        click: () =>
+          InfoController.changeAvatar(
+            document.getElementById("changeAvatar")?.files[0]
+          ),
+      },
     });
 
     this.children.saveInfo = new Button({
