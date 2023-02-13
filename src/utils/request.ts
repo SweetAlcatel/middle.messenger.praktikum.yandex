@@ -77,9 +77,9 @@ class HTTPTransport {
         }
       };
 
-      xhr.onabort = () => reject();
-      xhr.onerror = () => reject();
-      xhr.ontimeout = () => reject();
+      xhr.onabort = reject;
+      xhr.onerror = reject;
+      xhr.ontimeout = reject;
 
       xhr.setRequestHeader("Content-Type", "application/json");
 

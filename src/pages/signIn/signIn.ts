@@ -27,27 +27,25 @@ class SignInPage extends Block {
     this.children.button = new Button({
       text: "Войти",
       events: {
-        click: () => this.onSubmit(),
+        click: () => {
+          const values = Object.values(this.children)
+            .filter((child) => child instanceof Input)
+            .map((child) => [
+              (child as Input).getName(),
+              (child as Input).getValue(),
+            ]);
+
+          const data = Object.fromEntries(values);
+
+          AuthController.signin(data as SignupData);
+        },
       },
     });
 
     this.children.link = new Link({
       label: "Регистрация",
-      to: "/register",
+      to: "/signUp",
     });
-  }
-
-  onSubmit() {
-    const values = Object.values(this.children)
-      .filter((child) => child instanceof Input)
-      .map((child) => [
-        (child as Input).getName(),
-        (child as Input).getValue(),
-      ]);
-
-    const data = Object.fromEntries(values);
-
-    AuthController.signin(data as SignupData);
   }
 
   render() {
