@@ -4,7 +4,7 @@ import styles from "./signIn.module.scss";
 import { Button } from "../../layout/button/button";
 import { Input } from "../../layout/input/input";
 import { Link } from "../../layout/link/link";
-import AuthController from "../../controllers/AuthController";
+import AuthController from "../../controllers/authController";
 
 class SignInPage extends Block {
   constructor() {

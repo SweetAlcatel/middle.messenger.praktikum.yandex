@@ -3,7 +3,7 @@ import signUpTemplate from "bundle-text:./signUp.hbs";
 import { Button } from "../../layout/button/button";
 import { Input } from "../../layout/input/input";
 import { Link } from "../../layout/link/link";
-import AuthController from "../../controllers/AuthController";
+import AuthController from "../../controllers/authController";
 import styles from "./signUp.module.scss";
 
 class SignUpPage extends Block {
