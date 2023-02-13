@@ -1,85 +1,98 @@
-import { RequestOptions, Methods } from "../types/request";
-
-function queryStringify(data: { [key: string]: any }) {
-  if (typeof data !== "object") {
-    throw new Error("data должна быть объектом");
-  }
-
-  const keys = Object.keys(data);
-  return keys.reduce((result, key, index) => {
-    return `${result}${key}=${data[key]}${index < keys.length - 1 ? "&" : ""}`;
-  }, "?");
+export enum Method {
+  Get = "Get",
+  Post = "Post",
+  Put = "Put",
+  Patch = "Patch",
+  Delete = "Delete",
 }
+
+type Options = {
+  method: Method;
+  data?: any;
+};
 
 class HTTPTransport {
-  get = (url: string, options: RequestOptions) => {
-    return this.request(url, {
-      ...options,
-      method: Methods.GET,
-      timeout: 5000,
+  static API_URL = "https://ya-praktikum.tech/api/v2";
+  protected endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
+  }
+
+  public get<Response>(path = "/"): Promise<Response> {
+    return this.request<Response>(this.endpoint + path);
+  }
+
+  public post<Response = void>(
+    path: string,
+    data?: unknown
+  ): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Post,
+      data,
     });
-  };
+  }
 
-  post = (url: string, options: RequestOptions) => {
-    return this.request(url, {
-      ...options,
-      method: Methods.POST,
-      timeout: 5000,
+  public put<Response = void>(path: string, data: unknown): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Put,
+      data,
     });
-  };
+  }
 
-  put = (url: string, options: RequestOptions) => {
-    return this.request(url, {
-      ...options,
-      method: Methods.PUT,
-      timeout: 5000,
+  public patch<Response = void>(
+    path: string,
+    data: unknown
+  ): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Patch,
+      data,
     });
-  };
+  }
 
-  delete = (url: string, options: RequestOptions) => {
-    return this.request(url, {
-      ...options,
-      method: Methods.DELETE,
-      timeout: 5000,
+  public delete<Response>(path: string, data?: unknown): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Delete,
+      data,
     });
-  };
+  }
 
-  request = (url: string, options: RequestOptions) => {
-    const { headers, method, data, timeout } = options;
+  private request<Response>(
+    url: string,
+    options: Options = { method: Method.Get }
+  ): Promise<Response> {
+    const { method, data } = options;
 
-    return new Promise(function (resolve, reject) {
-      if (!method) {
-        reject("Нет метода");
-        return;
-      }
-
+    return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.withCredentials = true;
-      const isGet = method === Methods.GET;
+      xhr.open(method, url);
 
-      xhr.open(method, isGet && !!data ? `${url}${queryStringify(data)}` : url);
-
-      Object.keys(headers).forEach((key) => {
-        xhr.setRequestHeader(key, headers[key]);
-      });
-
-      xhr.onload = function () {
-        resolve(xhr);
+      xhr.onreadystatechange = (e) => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status < 400) {
+            resolve(xhr.response);
+          } else {
+            reject(xhr.response);
+          }
+        }
       };
 
-      xhr.onabort = reject;
-      xhr.onerror = reject;
+      xhr.onabort = () => reject();
+      xhr.onerror = () => reject();
+      xhr.ontimeout = () => reject();
 
-      xhr.timeout = timeout;
-      xhr.ontimeout = reject;
+      xhr.setRequestHeader("Content-Type", "application/json");
 
-      if (isGet || !data) {
+      xhr.withCredentials = true;
+      xhr.responseType = "json";
+
+      if (method === Method.Get || !data) {
         xhr.send();
       } else {
-        xhr.send(data);
+        xhr.send(JSON.stringify(data));
       }
     });
-  };
+  }
 }
 
-export const requstInstance = new HTTPTransport();
+export { HTTPTransport };

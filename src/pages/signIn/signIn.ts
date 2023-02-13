@@ -1,65 +1,58 @@
-import loginTemplate from "bundle-text:./signIn.hbs";
-import { Input } from "../../layout/input/input";
-import { Button } from "../../layout/button/button";
 import { Block } from "../../utils/block";
-import { router } from "../../index";
-import { UserController } from "../../controllers/user";
+import signInTemplate from "bundle-text:./signIn.hbs";
+import styles from "./signIn.module.scss";
+import { Button } from "../../layout/button/button";
+import { Input } from "../../layout/input/input";
+import { Link } from "../../layout/link/link";
+import AuthController from "../../controllers/AuthController";
 
-export class SignInPage extends Block {
+class SignInPage extends Block {
   constructor() {
-    super("div");
+    super({});
   }
 
-  private authData = {
-    login: "",
-    password: "",
-  };
-
-  protected init(): void {
-    this.children.loginInput = new Input({
-      type: "text",
+  init() {
+    this.children.login = new Input({
       name: "login",
-      events: {
-        focus: (e: { target: HTMLInputElement }) =>
-          (this.authData.login = e.target.value),
-        blur: (e: { target: HTMLInputElement }) =>
-          (this.authData.login = e.target.value),
-      },
-      pattern: `'/^[a-zA-Z0-9]+$/'`,
+      type: "text",
       placeholder: "Логин",
     });
 
-    this.children.passwordInput = new Input({
-      type: "password",
+    this.children.password = new Input({
       name: "password",
-      events: {
-        focus: (e: { target: HTMLInputElement }) =>
-          (this.authData.password = e.target.value),
-        blur: (e: { target: HTMLInputElement }) =>
-          (this.authData.password = e.target.value),
-      },
-      pattern: `/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/`,
+      type: "password",
       placeholder: "Пароль",
     });
 
-    this.children.buttonLogin = new Button({
-      text: "Авторизироваться",
+    this.children.button = new Button({
+      text: "Войти",
       events: {
-        click: () => {
-          UserController.signIn(this.authData);
-        },
+        click: () => this.onSubmit(),
       },
     });
 
-    this.children.noAccount = new Button({
-      text: "Нет аккаунта?",
-      events: {
-        click: () => router.go("/registration"),
-      },
+    this.children.link = new Link({
+      label: "Регистрация",
+      to: "/register",
     });
+  }
+
+  onSubmit() {
+    const values = Object.values(this.children)
+      .filter((child) => child instanceof Input)
+      .map((child) => [
+        (child as Input).getName(),
+        (child as Input).getValue(),
+      ]);
+
+    const data = Object.fromEntries(values);
+
+    AuthController.signin(data as SignupData);
   }
 
   render() {
-    return this.compile(loginTemplate, { ...this.props });
+    return this.compile(signInTemplate, { ...this.props, styles });
   }
 }
+
+export { SignInPage };
