@@ -2,10 +2,10 @@ import { Block } from "../../utils/block";
 import chatListTemplate from "bundle-text:./chatList.hbs";
 import { Link } from "../link/link";
 import { Chat } from "../chat/chat";
-import ChatsController from "../../controllers/chatsController";
 import { withStore } from "../../utils/store";
 import styles from "./chatList.module.scss";
 import { FixMeLater } from "../../types";
+import { ChatsController } from "../../controllers/chatsController";
 
 class ChatsListBase extends Block<FixMeLater> {
   constructor(props: FixMeLater) {
