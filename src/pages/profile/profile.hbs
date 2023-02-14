@@ -1,13 +1,9 @@
-<main class="profileWrapper">
-    <div class="profileContainer">
-        <div class="avatar"></div>
-        {{#each fields}}
-            {{{ this }}}
-        {{/each}}
-        <div class="settings">
-            <a>Изменить данные</a>
-            <a>Изменить пароль</a>
-            {{{logoutButton}}}
-        </div>
-    </div>
-</main>
+<div>
+    <h2>
+        User Profile:
+    </h2>
+    {{#each fields}}
+        {{{this}}}
+    {{/each}}
+    {{{ logoutButton }}}
+</div>
