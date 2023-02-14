@@ -37,7 +37,7 @@ class SignInPage extends Block {
 
           const data = Object.fromEntries(values);
 
-          AuthController.signin(data as SignupData);
+          AuthController.signin(data as any);
         },
       },
     });
