@@ -19,7 +19,7 @@ export interface Message {
   };
 }
 
-class MessagesController {
+class MessageController {
   private sockets: Map<number, FixMeLater> = new Map();
 
   async connect(id: number, token: string) {
@@ -89,16 +89,11 @@ class MessagesController {
   }
 
   private subscribe(transport: FixMeLater, id: number) {
-    transport.on(WebsocketEvents.Message, (message) =>
+    transport.on(WebsocketEvents.Message, (message: FixMeLater) =>
       this.onMessage(id, message)
     );
     transport.on(WebsocketEvents.Close, () => this.onClose(id));
   }
 }
 
-const controller = new MessagesController();
-
-// @ts-ignore
-window.messagesController = controller;
-
-export default controller;
+export { MessageController };
