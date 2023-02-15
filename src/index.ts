@@ -3,7 +3,7 @@ import { SignInPage } from "./pages/signIn/signIn";
 import { SignUpPage } from "./pages/signUp/signUp";
 import { Router } from "./utils/router";
 
-export const router = new Router(".root");
+const router = new Router(".root");
 
 router
   .use("/", SignInPage)
