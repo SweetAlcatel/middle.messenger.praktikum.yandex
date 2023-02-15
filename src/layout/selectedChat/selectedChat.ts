@@ -25,6 +25,7 @@ class SelectedChatBase extends Block<MessengerProps> {
       type: "text",
       placeholder: "Сообщение",
       name: "message",
+      pattern: `/^.+$/`,
     });
 
     this.children.button = new Button({

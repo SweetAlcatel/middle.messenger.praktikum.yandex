@@ -17,36 +17,42 @@ class SignUpPage extends Block {
       name: "first_name",
       type: "text",
       placeholder: "Имя",
+      pattern: `/^[А-ЯЁA-Z][а-яёa-z-]*$/`,
     });
 
     this.children.secondName = new Input({
       name: "second_name",
       type: "text",
       placeholder: "Фамилия",
+      pattern: `/^[А-ЯЁA-Z][а-яёa-z-]*$/`,
     });
 
     this.children.email = new Input({
       name: "email",
       type: "email",
       placeholder: "E-mail",
+      pattern: `/^[a-zA-Z0-9._-]+@[a-zA-Z._-]+\.[a-zA-Z]{2,}$/`,
     });
 
     this.children.login = new Input({
       name: "login",
       type: "text",
       placeholder: "Логин",
+      pattern: `/^(?=.*[a-zA-Z])([\w-_]{3,20})$/`,
     });
 
     this.children.phone = new Input({
       name: "phone",
       type: "tel",
       placeholder: "Телефон",
+      pattern: `/^(8|\+7)[0-9]{10,15}$/`,
     });
 
     this.children.password = new Input({
       name: "password",
       type: "password",
       placeholder: "Пароль",
+      pattern: `/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/`,
     });
 
     this.children.button = new Button({

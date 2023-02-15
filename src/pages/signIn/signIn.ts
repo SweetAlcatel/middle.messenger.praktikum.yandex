@@ -16,12 +16,14 @@ class SignInPage extends Block {
       name: "login",
       type: "text",
       placeholder: "Логин",
+      pattern: `/^(?=.*[a-zA-Z])([\w-_]{3,20})$/`,
     });
 
     this.children.password = new Input({
       name: "password",
       type: "password",
       placeholder: "Пароль",
+      pattern: `/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/`,
     });
 
     this.children.button = new Button({
