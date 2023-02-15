@@ -14,7 +14,7 @@ class ChatsListBase extends Block<FixMeLater> {
 
   protected init() {
     this.children.chats = this.createChats(this.props);
-    this.children.profileLink = new Link({ to: "/profile", label: "Профиль" });
+    this.children.profileLink = new Link({ to: "/profile", link: "Профиль" });
   }
 
   protected componentDidUpdate(

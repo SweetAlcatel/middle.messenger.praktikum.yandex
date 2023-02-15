@@ -3,7 +3,7 @@ import { Block } from "../../utils/block";
 import styles from "./input.module.scss";
 
 interface InputProps {
-  name: string;
+  name?: string;
   type: string;
   placeholder?: string;
   events?: Record<string, any>;

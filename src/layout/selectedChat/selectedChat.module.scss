@@ -1,7 +1,6 @@
 .messenger {
     display: flex;
-    flex-flow: column nowrap;
-    width: 100%;
+    flex-flow: column;
     padding: 10px 30px;
 }
 
@@ -15,13 +14,13 @@
     flex-flow: row nowrap;
     width: 100%;
     margin-top: auto;
-}
 
-.messengerFooter input {
-    width: 100%;
-    border-radius: 0;
-}
+    input {
+        width: 100%;
+        border-radius: 0;
+    }
 
-.messengerFooter button {
-    margin-left: auto;
+    button {
+        margin-left: auto;
+    }
 }

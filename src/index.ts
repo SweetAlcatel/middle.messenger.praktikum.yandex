@@ -4,6 +4,8 @@ import { SignUpPage } from "./pages/signUp/signUp";
 import { ChatPage } from "./pages/chats/chats";
 import { authInstance } from "./controllers/authController";
 import { Router } from "./utils/router";
+import { ChangeDataProfilePage } from "./pages/changeDataProfile/changeDataProfile";
+import { ChangePasswordProfile } from "./pages/changePasswordProfile/changePasswordProfile";
 
 export const router = new Router(".root");
 
@@ -13,6 +15,8 @@ window.addEventListener("DOMContentLoaded", async () => {
     .use("/signUp", SignUpPage)
     .use("/profile", ProfilePage)
     .use("/chats", ChatPage)
+    .use("/changeData", ChangeDataProfilePage)
+    .use("/changePassword", ChangePasswordProfile)
     .start();
 
   let isProtectedRoute = true;
