@@ -96,4 +96,4 @@ class MessageController {
   }
 }
 
-export { MessageController };
+export const messageInstance = new MessageController();

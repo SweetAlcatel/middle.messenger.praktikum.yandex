@@ -1,6 +1,6 @@
 import { ChatsApi } from "../api/chatsApi";
 import store from "../utils/store";
-import { MessageController } from "../controllers/messageController";
+import { messageInstance } from "./messageController";
 
 class ChatsController {
   private readonly api: ChatsApi;
@@ -21,7 +21,7 @@ class ChatsController {
     chats.map(async (chat) => {
       const token = await this.getToken(chat.id);
 
-      await MessageController.connect(chat.id, token);
+      await messageInstance.connect(chat.id, token);
     });
 
     store.set("chats", chats);
@@ -46,4 +46,4 @@ class ChatsController {
   }
 }
 
-export { ChatsController };
+export const chatsInstance = new ChatsController();

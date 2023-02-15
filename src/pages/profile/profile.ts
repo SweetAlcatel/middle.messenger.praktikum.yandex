@@ -2,7 +2,7 @@ import { Block } from "../../utils/block";
 import profileTemplate from "bundle-text:./profile.hbs";
 import { Button } from "../../layout/button/button";
 import { Field } from "../../layout/field/field";
-import { AuthController } from "../../controllers/authController";
+import { authInstance } from "../../controllers/authController";
 import { FixMeLater } from "../../types";
 import { withStore } from "../../utils/store";
 
@@ -27,7 +27,7 @@ class ProfilePageBase extends Block<FixMeLater> {
       text: "Выйти",
       events: {
         click: () => {
-          AuthController.logout();
+          authInstance.logout();
         },
       },
     });

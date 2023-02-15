@@ -1,6 +1,6 @@
 import { AuthApi, SigninData, SignupData } from "../api/authApi";
 import store from "../utils/store";
-import { MessageController } from "./messageController";
+import { messageInstance } from "./messageController";
 import { router } from "../index";
 
 class AuthController {
@@ -42,7 +42,7 @@ class AuthController {
 
   async logout() {
     try {
-      MessageController.closeAll();
+      messageInstance.closeAll();
 
       await this.api.logout();
 
@@ -53,4 +53,4 @@ class AuthController {
   }
 }
 
-export { AuthController };
+export const authInstance = new AuthController();

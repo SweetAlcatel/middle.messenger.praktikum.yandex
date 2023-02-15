@@ -6,7 +6,7 @@ import styles from "./selectedChat.module.scss";
 import { withStore } from "../../utils/store";
 import { FixMeLater } from "../../types";
 import { Message } from "../../layout/message/message";
-import { MessageController } from "../../controllers/messageController";
+import { messageInstance } from "../../controllers/messageController";
 
 interface MessengerProps {
   selectedChat: number | undefined;
@@ -37,7 +37,7 @@ class SelectedChatBase extends Block<MessengerProps> {
 
           input.setValue("");
 
-          MessageController.sendMessage(this.props.selectedChat!, message);
+          messageInstance.sendMessage(this.props.selectedChat!, message);
         },
       },
     });
@@ -53,12 +53,12 @@ class SelectedChatBase extends Block<MessengerProps> {
   }
 
   private createMessages(props: MessengerProps) {
-    return props.messages.map((data) => {
+    return props.messages.map((data: FixMeLater) => {
       return new Message({ ...data, isMine: props.userId === data.user_id });
     });
   }
 
-  protected render(): DocumentFragment {
+  protected render() {
     return this.compile(selectedChatTemplate, { ...this.props, styles });
   }
 }
@@ -70,7 +70,7 @@ const withSelectedChatMessages = withStore((state) => {
     return {
       messages: [],
       selectedChat: undefined,
-      userId: state.user.id,
+      userId: undefined,
     };
   }
 

@@ -3,8 +3,9 @@ import signUpTemplate from "bundle-text:./signUp.hbs";
 import { Button } from "../../layout/button/button";
 import { Input } from "../../layout/input/input";
 import { Link } from "../../layout/link/link";
-import { AuthController } from "../../controllers/authController";
+import { authInstance } from "../../controllers/authController";
 import styles from "./signUp.module.scss";
+import { FixMeLater } from "../../types";
 
 class SignUpPage extends Block {
   constructor() {
@@ -56,7 +57,7 @@ class SignUpPage extends Block {
     });
 
     this.children.link = new Link({
-      label: "Войти",
+      link: "Есть аккаунт?",
       to: "/",
     });
   }
@@ -71,7 +72,7 @@ class SignUpPage extends Block {
 
     const data = Object.fromEntries(values);
 
-    AuthController.signup(data as SignupData);
+    authInstance.signup(data as FixMeLater);
   }
 
   render() {

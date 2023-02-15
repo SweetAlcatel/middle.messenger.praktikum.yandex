@@ -5,7 +5,7 @@ import { Chat } from "../chat/chat";
 import { withStore } from "../../utils/store";
 import styles from "./chatList.module.scss";
 import { FixMeLater } from "../../types";
-import { ChatsController } from "../../controllers/chatsController";
+import { chatsInstance } from "../../controllers/chatsController";
 
 class ChatsListBase extends Block<FixMeLater> {
   constructor(props: FixMeLater) {
@@ -27,12 +27,12 @@ class ChatsListBase extends Block<FixMeLater> {
   }
 
   private createChats(props: FixMeLater) {
-    return props.chats.map((data) => {
+    return props.chats.map((data: any) => {
       return new Chat({
         ...data,
         events: {
           click: () => {
-            ChatsController.selectChat(data.id);
+            chatsInstance.selectChat(data.id);
           },
         },
       });
