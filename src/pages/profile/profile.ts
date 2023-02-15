@@ -5,7 +5,7 @@ import { Field } from "../../layout/field/field";
 import { authInstance } from "../../controllers/authController";
 import { FixMeLater } from "../../types";
 import { withStore } from "../../utils/store";
-import { router } from "../../index";
+import { Link } from "../../layout/link/link";
 
 const userFields = [
   "id",
@@ -24,18 +24,14 @@ class ProfilePageBase extends Block<FixMeLater> {
       return new Field({ name, value: this.props[name] });
     });
 
-    this.children.changeData = new Button({
-      text: "Изменить данные",
-      events: {
-        click: () => {},
-      },
+    this.children.linkChangeData = new Link({
+      link: "Изменить данные",
+      to: "/changeData",
     });
 
-    this.children.changePassword = new Button({
-      text: "Изменить пароль",
-      events: {
-        click: () => {},
-      },
+    this.children.linkChangePassword = new Link({
+      link: "Изменить пароль",
+      to: "/changePassword",
     });
 
     this.children.logoutButton = new Button({
