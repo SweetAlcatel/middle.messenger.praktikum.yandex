@@ -1,23 +1,25 @@
-import { FixMeLater } from "../types";
-import { BaseApi } from "./baseApi";
+import BaseAPI from "./BaseAPI";
 
-class UserApi extends BaseApi {
+export class UserAPI extends BaseAPI {
   constructor() {
     super("/user");
   }
 
-  updateProfileData(data: FixMeLater) {
-    return this.http.put("/profile", { data });
+  update(data: any) {
+    return this.http.put("/profile", data);
   }
 
-  updatePassword(data: FixMeLater) {
-    return this.http.put("/password", { data });
+  update_password(data: any) {
+    return this.http.put("/password", data);
   }
 
-  read = undefined;
+  update_avatar(file: any) {
+    return this.http.put("/profile/avatar", file, "img");
+  }
+
   create = undefined;
-  update = undefined;
+  read = undefined;
   delete = undefined;
 }
 
-export { UserApi };
+export default new UserAPI();

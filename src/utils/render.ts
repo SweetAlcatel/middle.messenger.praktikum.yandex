@@ -1,12 +1,17 @@
-import { FixMeLater } from "../types/index";
+import { Block } from "./block";
 
-export function render(query: FixMeLater, block: FixMeLater) {
+function render(query: string, block: Block) {
   const root = document.querySelector(query);
 
-  // Можно завязаться на реализации вашего класса Block
-  root.appendChild(block.getContent());
+  if (root === null) {
+    throw new Error(`root not found by selector "${query}"`);
+  }
 
-  // block.dispatchComponentDidMount();
+  root.innerHTML = "";
+
+  root.append(block.getContent()!);
 
   return root;
 }
+
+export { render };

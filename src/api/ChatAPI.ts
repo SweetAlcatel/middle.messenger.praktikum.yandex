@@ -1,5 +1,5 @@
-import { FixMeLater } from "../types";
-import { BaseApi } from "./baseApi";
+import BaseAPI from "./BaseAPI";
+import { User } from "./AuthAPI";
 
 export interface ChatInfo {
   id: number;
@@ -7,30 +7,34 @@ export interface ChatInfo {
   avatar: string;
   unread_count: number;
   last_message: {
-    user: FixMeLater;
+    user: User;
     time: string;
     content: string;
   };
 }
 
-class ChatsApi extends BaseApi {
+export interface NewChatInfo {
+  id: number;
+}
+
+export class ChatsAPI extends BaseAPI {
   constructor() {
     super("/chats");
-  }
-
-  create(title: string) {
-    return this.http.post("/", { title });
-  }
-
-  delete(id: number): Promise<unknown> {
-    return this.http.delete("/", { chatId: id });
   }
 
   read(): Promise<ChatInfo[]> {
     return this.http.get("/");
   }
 
-  getUsers(id: number): Promise<Array<FixMeLater & { role: string }>> {
+  create(title: string): Promise<NewChatInfo> {
+    return this.http.post("/", { title: title });
+  }
+
+  delete(id: string): Promise<unknown> {
+    return this.http.delete("/", { chatId: id });
+  }
+
+  getUsers(id: number): Promise<Array<User & { role: string }>> {
     return this.http.get(`/${id}/users`);
   }
 
@@ -47,4 +51,4 @@ class ChatsApi extends BaseApi {
   update = undefined;
 }
 
-export { ChatsApi };
+export default new ChatsAPI();

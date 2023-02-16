@@ -6,7 +6,9 @@ import styles from "./selectedChat.module.scss";
 import { withStore } from "../../utils/store";
 import { FixMeLater } from "../../types";
 import { Message } from "../../layout/message/message";
-import { messageInstance } from "../../controllers/messageController";
+import MessagesController, {
+  Message as MessageInfo,
+} from "../../controllers/MessagesController";
 
 interface MessengerProps {
   selectedChat: number | undefined;
@@ -38,7 +40,7 @@ class SelectedChatBase extends Block<MessengerProps> {
 
           input.setValue("");
 
-          messageInstance.sendMessage(this.props.selectedChat!, message);
+          MessagesController.sendMessage(this.props.selectedChat!, message);
         },
       },
     });

@@ -1,28 +1,45 @@
-import { UserApi } from "../api/userApi";
-import { FixMeLater } from "../types";
+import API, { UserAPI } from "../api/UserAPI";
+import store from "../utils/store";
+import router from "../utils/router";
+import AuthController from "./AuthController";
 
-class UserController {
-  private readonly api: UserApi;
+export class UserController {
+  private readonly api: UserAPI;
 
   constructor() {
-    this.api = new UserApi();
+    this.api = API;
   }
 
-  async updateData(data: FixMeLater) {
+  async setavatar(file: any) {
     try {
-      await this.api.updateProfileData(data);
+      await this.api.update_avatar(file);
+      await AuthController.fetchUser();
     } catch (e: any) {
       console.error(e);
     }
   }
 
-  async updatePassword(data: FixMeLater) {
+  async setdata(data: any) {
     try {
-      await this.api.updatePassword(data);
+      await this.api.update(data);
+      await AuthController.fetchUser();
+
+      router.go("/profile");
     } catch (e: any) {
-      console.error(e.message);
+      console.error(e);
+    }
+  }
+
+  async setpassword(data: any) {
+    try {
+      await this.api.update_password(data);
+
+      router.go("/profile");
+    } catch (e: any) {
+      store.getState().errors.error_password = "пароль введен неверно";
+      console.error(e);
     }
   }
 }
 
-export const userInstance = new UserController();
+export default new UserController();

@@ -2,7 +2,7 @@ import { Block } from "../../utils/block";
 import chatsTemplate from "bundle-text:./chats.hbs";
 import { SelectedChat } from "../../layout/selectedChat/selectedChat";
 import { ChatsList } from "../../layout/chatList/chatList";
-import { chatsInstance } from "../../controllers/chatsController";
+import ChatController from "../../controllers/ChatController";
 import styles from "./chats.module.scss";
 
 class ChatPage extends Block {
@@ -15,7 +15,7 @@ class ChatPage extends Block {
 
     this.children.chat = new SelectedChat({});
 
-    chatsInstance.fetchChats().finally(() => {
+    ChatController.getChats().finally(() => {
       (this.children.chatsList as Block).setProps({
         isLoaded: true,
       });

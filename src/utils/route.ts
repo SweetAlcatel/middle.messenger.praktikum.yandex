@@ -1,4 +1,3 @@
-import { FixMeLater } from "../types";
 import { Block } from "./block";
 import { isEqual } from "./isEqual";
 import { render } from "./render";
@@ -7,8 +6,8 @@ class Route {
   private block: Block | null = null;
 
   constructor(
-    private pathname: string | FixMeLater,
-    private readonly blockClass: FixMeLater,
+    private pathname: string,
+    private readonly blockClass: typeof Block,
     private readonly query: string
   ) {}
 
@@ -16,7 +15,7 @@ class Route {
     this.block = null;
   }
 
-  match(pathname: string | FixMeLater) {
+  match(pathname: string) {
     return isEqual(pathname, this.pathname);
   }
 

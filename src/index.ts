@@ -2,45 +2,53 @@ import { ProfilePage } from "./pages/profile/profile";
 import { SignInPage } from "./pages/signIn/signIn";
 import { SignUpPage } from "./pages/signUp/signUp";
 import { ChatPage } from "./pages/chats/chats";
-import { authInstance } from "./controllers/authController";
-import { Router } from "./utils/router";
+import AuthController from "./controllers/authController";
+import Router from "./utils/router";
 import { ChangeDataProfilePage } from "./pages/changeDataProfile/changeDataProfile";
 import { ChangePasswordProfile } from "./pages/changePasswordProfile/changePasswordProfile";
 
-export const router = new Router(".root");
+enum Routes {
+  Index = "/",
+  Register = "/signUp",
+  Profile = "/profile",
+  EditProfile = "/changeData",
+  Password = "/changePassword",
+  Chats = "/chats",
+  Error404 = "/404",
+  Error500 = "/500",
+}
 
 window.addEventListener("DOMContentLoaded", async () => {
-  router
-    .use("/", SignInPage)
-    .use("/signUp", SignUpPage)
-    .use("/profile", ProfilePage)
-    .use("/chats", ChatPage)
-    .use("/changeData", ChangeDataProfilePage)
-    .use("/changePassword", ChangePasswordProfile)
+  Router.use(Routes.Index, SignInPage)
+    .use(Routes.Register, SignUpPage)
+    .use(Routes.Profile, ProfilePage)
+    .use(Routes.EditProfile, ChangeDataProfilePage)
+    .use(Routes.Password, ChangePasswordProfile)
+    .use(Routes.Chats, ChatPage)
     .start();
 
   let isProtectedRoute = true;
 
   switch (window.location.pathname) {
-    case "/":
-    case "/signUp":
+    case Routes.Index:
+    case Routes.Register:
       isProtectedRoute = false;
       break;
   }
 
   try {
-    await authInstance.fetchUser();
+    await AuthController.fetchUser();
 
-    router.start();
+    Router.start();
 
     if (!isProtectedRoute) {
-      router.go("/profile");
+      Router.go(Routes.Profile);
     }
   } catch (e) {
-    router.start();
+    Router.start();
 
     if (isProtectedRoute) {
-      router.go("/");
+      Router.go(Routes.Index);
     }
   }
 });
