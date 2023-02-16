@@ -1,11 +1,14 @@
 import errorTemplate from "bundle-text:./error.hbs";
 import { Block } from "../../utils/block";
 
-interface IClientErrorPage {}
+export class ClientErrorPage extends Block {
+  props = {
+    errorCode: "400",
+    errorMessage: "Вы не туда попали",
+  };
 
-class ClientErrorPage extends Block {
-  constructor(props: IClientErrorPage) {
-    super("div", props);
+  constructor() {
+    super("div");
   }
 
   render() {
@@ -13,24 +16,17 @@ class ClientErrorPage extends Block {
   }
 }
 
-interface IServerErrorPage {}
+export class ServerErrorPage extends Block {
+  props = {
+    errorCode: "500",
+    errorMessage: "Мы уже фиксим",
+  };
 
-class ServerErrorPage extends Block {
-  constructor(props: IServerErrorPage) {
-    super("div", props);
+  constructor() {
+    super("div");
   }
 
   render() {
     return this.compile(errorTemplate, { ...this.props });
   }
 }
-
-export const clientErrorPage = new ClientErrorPage({
-  errorCode: "400",
-  errorMessage: "Вы не туда попали",
-});
-
-export const serverErrorPage = new ServerErrorPage({
-  errorCode: "500",
-  errorMessage: "Мы уже фиксим",
-});

@@ -1,96 +1,89 @@
-import signUpHTML from "bundle-text:./signUp.hbs";
 import { Block } from "../../utils/block";
-import { Input } from "../../layout/input/input";
+import signUpTemplate from "bundle-text:./signUp.hbs";
 import { Button } from "../../layout/button/button";
-import { FixMeLater } from "src/types";
-
-interface ISignUpPage {}
+import { Input } from "../../layout/input/input";
+import { Link } from "../../layout/link/link";
+import { authInstance } from "../../controllers/authController";
+import styles from "./signUp.module.scss";
+import { FixMeLater } from "../../types";
 
 class SignUpPage extends Block {
-  constructor(props: ISignUpPage) {
-    super("div", props);
+  constructor() {
+    super({});
+  }
+
+  init() {
+    this.children.firstName = new Input({
+      name: "first_name",
+      type: "text",
+      placeholder: "Имя",
+      pattern: `/^[А-ЯЁA-Z][а-яёa-z-]*$/`,
+    });
+
+    this.children.secondName = new Input({
+      name: "second_name",
+      type: "text",
+      placeholder: "Фамилия",
+      pattern: `/^[А-ЯЁA-Z][а-яёa-z-]*$/`,
+    });
+
+    this.children.email = new Input({
+      name: "email",
+      type: "email",
+      placeholder: "E-mail",
+      pattern: `/^[a-zA-Z0-9._-]+@[a-zA-Z._-]+\.[a-zA-Z]{2,}$/`,
+    });
+
+    this.children.login = new Input({
+      name: "login",
+      type: "text",
+      placeholder: "Логин",
+      pattern: `/^(?=.*[a-zA-Z])([\w-_]{3,20})$/`,
+    });
+
+    this.children.phone = new Input({
+      name: "phone",
+      type: "tel",
+      placeholder: "Телефон",
+      pattern: `/^(8|\+7)[0-9]{10,15}$/`,
+    });
+
+    this.children.password = new Input({
+      name: "password",
+      type: "password",
+      placeholder: "Пароль",
+      pattern: `/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/`,
+    });
+
+    this.children.button = new Button({
+      text: "Зарегистрироваться",
+      events: {
+        click: () => this.onSubmit(),
+      },
+    });
+
+    this.children.link = new Link({
+      link: "Есть аккаунт?",
+      to: "/",
+    });
+  }
+
+  onSubmit() {
+    const values = Object.values(this.children)
+      .filter((child) => child instanceof Input)
+      .map((child) => [
+        (child as Input).getName(),
+        (child as Input).getValue(),
+      ]);
+
+    const data = Object.fromEntries(values);
+
+    authInstance.signup(data as FixMeLater);
   }
 
   render() {
-    return this.compile(signUpHTML, { ...this.props });
+    return this.compile(signUpTemplate, { ...this.props, styles });
   }
 }
 
-export const signUpPage = new SignUpPage({
-  inputEmail: new Input({
-    type: "text",
-    name: "email",
-    id: "email",
-    events: {
-      focus: (e: FixMeLater) => console.log(e.target.value),
-      blur: (e: FixMeLater) => console.log(e.target.value),
-    },
-    pattern: `([A-zА-я])+([0-9\-_\+\.])*([A-zА-я0-9\-_\+\.])*@([A-zА-я])+([0-9\-_\+\.])*([A-zА-я0-9\-_\+\.])*[\.]([A-zА-я])+`,
-  }),
-  inputLogin: new Input({
-    type: "text",
-    name: "login",
-    id: "login",
-    events: {
-      focus: (e: FixMeLater) => console.log(e.target.value),
-      blur: (e: FixMeLater) => console.log(e.target.value),
-    },
-    pattern: `'/^[a-zA-Z0-9]+$/'`,
-  }),
-  inputFirstName: new Input({
-    type: "text",
-    name: "first_name",
-    id: "first_name",
-    events: {
-      focus: (e: FixMeLater) => console.log(e.target.value),
-      blur: (e: FixMeLater) => console.log(e.target.value),
-    },
-    pattern: `"^[?!,.а-яА-ЯёЁв\s]+$"`,
-  }),
-  inputSecondName: new Input({
-    type: "text",
-    name: "second_name",
-    id: "second_name",
-    events: {
-      focus: (e: FixMeLater) => console.log(e.target.value),
-      blur: (e: FixMeLater) => console.log(e.target.value),
-    },
-    pattern: `^[?!,.а-яА-ЯёЁв\s]+$`,
-  }),
-  inputTelephone: new Input({
-    type: "text",
-    name: "phone",
-    id: "phone",
-    events: {
-      focus: (e: FixMeLater) => console.log(e.target.value),
-      blur: (e: FixMeLater) => console.log(e.target.value),
-    },
-    pattern: `^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$`,
-  }),
-  inputPassword: new Input({
-    type: "password",
-    name: "password",
-    id: "password",
-    events: {
-      focus: (e: FixMeLater) => console.log(e.target.value),
-      blur: (e: FixMeLater) => console.log(e.target.value),
-    },
-    pattern: `/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/`,
-  }),
-  inputPasswordAgain: new Input({
-    type: "password",
-    name: "passwordAgain",
-    id: "passwordAgain",
-    events: {
-      focus: (e: FixMeLater) => console.log(e.target.value),
-      blur: (e: FixMeLater) => console.log(e.target.value),
-    },
-    pattern: `/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/`,
-  }),
-  button: new Button({
-    text: "Зарегистрироваться",
-    events: {
-      click: () => console.log("click"),
-    },
-  }),
-});
+export { SignUpPage };

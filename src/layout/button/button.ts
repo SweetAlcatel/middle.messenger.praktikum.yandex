@@ -1,28 +1,21 @@
 import { Block } from "../../utils/block";
-import buttonTemplate from "bundle-text:./button.hbs";
+import template from "bundle-text:./button.hbs";
+import styles from "./button.module.scss";
 
-interface IButton {
+interface ButtonProps {
+  type?: string;
   text: string;
   events: {
-    [key: string]: (payload: any) => void;
+    click: () => void;
   };
 }
 
-export class Button extends Block {
-  constructor(props: IButton) {
-    super("button", props);
+export class Button extends Block<ButtonProps> {
+  constructor(props: ButtonProps) {
+    super({ type: "button", ...props });
   }
 
   render() {
-    return this.compile(buttonTemplate, { ...this.props });
+    return this.compile(template, { ...this.props, styles });
   }
 }
-
-export const button = new Button({
-  text: "Зарегистрироваться",
-  events: {
-    click: (event) => {
-      console.log(event);
-    },
-  },
-});

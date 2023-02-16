@@ -1,39 +1,46 @@
-import { render } from "./utils/render";
-import { signUpPage } from "./pages/signUp/signUp";
-import { signInPage } from "./pages/signIn/signIn";
-import { clientErrorPage, serverErrorPage } from "./pages/error/error";
-import { profilePage } from "./pages/profile/profile";
-import { chatsPage } from "./pages/chats/chats";
-import { changePasswordProfilePage } from "./pages/changePasswordProfile/changePasswordProfile";
-import { changeDataProfilePage } from "./pages/changeDataProfile/changeDataProfile";
-import { allPages } from "./pages/allPages/allPages";
+import { ProfilePage } from "./pages/profile/profile";
+import { SignInPage } from "./pages/signIn/signIn";
+import { SignUpPage } from "./pages/signUp/signUp";
+import { ChatPage } from "./pages/chats/chats";
+import { authInstance } from "./controllers/authController";
+import { Router } from "./utils/router";
+import { ChangeDataProfilePage } from "./pages/changeDataProfile/changeDataProfile";
+import { ChangePasswordProfile } from "./pages/changePasswordProfile/changePasswordProfile";
 
-switch (window.location.pathname) {
-  case "/404":
-    render(".root", clientErrorPage);
-    break;
-  case "/500":
-    render(".root", serverErrorPage);
-    break;
-  case "/registration":
-    render(".root", signUpPage);
-    break;
-  case "/login":
-    render(".root", signInPage);
-    break;
-  case "/chats":
-    render(".root", chatsPage);
-    break;
-  case "/profile":
-    render(".root", profilePage);
-    break;
-  case "/changeData":
-    render(".root", changeDataProfilePage);
-    break;
-  case "/changePassword":
-    render(".root", changePasswordProfilePage);
-    break;
-  default:
-    render(".root", allPages);
-    break;
-}
+export const router = new Router(".root");
+
+window.addEventListener("DOMContentLoaded", async () => {
+  router
+    .use("/", SignInPage)
+    .use("/signUp", SignUpPage)
+    .use("/profile", ProfilePage)
+    .use("/chats", ChatPage)
+    .use("/changeData", ChangeDataProfilePage)
+    .use("/changePassword", ChangePasswordProfile)
+    .start();
+
+  let isProtectedRoute = true;
+
+  switch (window.location.pathname) {
+    case "/":
+    case "/signUp":
+      isProtectedRoute = false;
+      break;
+  }
+
+  try {
+    await authInstance.fetchUser();
+
+    router.start();
+
+    if (!isProtectedRoute) {
+      router.go("/profile");
+    }
+  } catch (e) {
+    router.start();
+
+    if (isProtectedRoute) {
+      router.go("/");
+    }
+  }
+});

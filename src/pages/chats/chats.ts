@@ -1,30 +1,30 @@
-import chatsTemplate from "bundle-text:./chats.hbs";
 import { Block } from "../../utils/block";
-import { Input } from "../../layout/input/input";
+import chatsTemplate from "bundle-text:./chats.hbs";
+import { SelectedChat } from "../../layout/selectedChat/selectedChat";
+import { ChatsList } from "../../layout/chatList/chatList";
+import { chatsInstance } from "../../controllers/chatsController";
+import styles from "./chats.module.scss";
 
-interface IChats {}
-
-class Chats extends Block {
-  constructor(props: IChats) {
-    super("div", props);
+class ChatPage extends Block {
+  constructor() {
+    super({});
   }
 
-  render() {
-    return this.compile(chatsTemplate, { ...this.props });
+  protected init() {
+    this.children.chatsList = new ChatsList({ isLoaded: false });
+
+    this.children.chat = new SelectedChat({});
+
+    chatsInstance.fetchChats().finally(() => {
+      (this.children.chatsList as Block).setProps({
+        isLoaded: true,
+      });
+    });
+  }
+
+  protected render() {
+    return this.compile(chatsTemplate, { styles });
   }
 }
 
-export const chatsPage = new Chats({
-  name: "Dima",
-  isChat: true,
-  inputMessage: new Input({
-    type: "text",
-    name: "message",
-    id: "message",
-    events: {
-      focus: () => console.log("focus"),
-      blur: () => console.log("blur"),
-    },
-    placeholder: "Введите сообщение",
-  }),
-});
+export { ChatPage };

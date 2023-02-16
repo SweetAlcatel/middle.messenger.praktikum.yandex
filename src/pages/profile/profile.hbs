@@ -1,35 +1,11 @@
-<main class="profileWrapper">
-    <div class="profileContainer">
-        <div class="avatar"></div>
-            <h2>{{name}}</h2>
-        <div class="field">
-            <span>Почта</span>
-            <span>mrneey@gmail.com</span>
-        </div>
-        <div class="field">
-            <span>Логин</span>
-            <span>sweet_alcatel</span>
-        </div>
-        <div class="field">
-            <span>Имя</span>
-            <span>Дмитрий</span>
-        </div>
-        <div class="field">
-            <span>Фамилия</span>
-            <span>Иванов</span>
-        </div>
-         <div class="field">
-            <span>Имя в чате</span>
-            <span>dima</span>
-        </div>
-        <div class="field">
-            <span>Телефон</span>
-            <span>88005553535</span>
-        </div>
-        <div class="settings">
-            <a>Изменить данные</a>
-            <a>Изменить пароль</a>
-            <a>Выйти</a>
-        </div>
-    </div>
-</main>
+<div>
+    <h2>
+        Мои данные:
+    </h2>
+    {{#each fields}}
+        {{{this}}}
+    {{/each}}
+    {{{linkChangeData}}}
+    {{{linkChangePassword}}}
+    {{{ logoutButton }}}
+</div>
