@@ -1,7 +1,7 @@
-import API from "../api/ChatAPI";
-import { ChatsAPI } from "../api/ChatAPI";
+import API from "../api/chatApi";
+import { ChatsAPI } from "../api/ChatApi";
 import store from "../utils/store";
-import MessagesController from "./MessagesController";
+import MessagesController from "./messagesController";
 
 export class ChatController {
   private readonly api: ChatsAPI;

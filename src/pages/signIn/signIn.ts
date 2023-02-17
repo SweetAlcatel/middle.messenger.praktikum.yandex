@@ -4,8 +4,8 @@ import styles from "./signIn.module.scss";
 import { Button } from "../../layout/button/button";
 import { Input } from "../../layout/input/input";
 import { Link } from "../../layout/link/link";
-import AuthController from "../../controllers/AuthController";
-import { SignupData } from "../../api/AuthAPI";
+import AuthController from "../../controllers/authController";
+import { SignupData } from "../../api/authApi";
 
 class SignInPage extends Block {
   constructor() {

@@ -3,7 +3,7 @@ import { Button } from "../button/button";
 import template from "bundle-text:./modalNewChat.hbs";
 import store from "../../utils/store";
 import { Input } from "../../layout/input/input";
-import ChatController from "../../controllers/ChatController";
+import ChatController from "../../controllers/chatController";
 import styles from "./modalNewChat.module.scss";
 
 interface ModalProps {
