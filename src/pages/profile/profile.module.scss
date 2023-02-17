@@ -1,4 +1,15 @@
 .profile {
     display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+.field {
+    display: flex;
+    justify-content: space-between;
+}
+
+.avatar {
+    display: flex;
+    justify-content: center;
 }
