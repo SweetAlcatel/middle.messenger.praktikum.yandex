@@ -1,5 +1,19 @@
-<main class="{{styles.chatsContainer}}">
-    {{{chatsList}}}
-    {{{chat}}}
-    {{{link}}}    
+<main class={{styles.chatsContainer}}>
+    {{#if flagNewChat}}
+        {{{modal}}}
+    {{/if}}
+    <div>
+        <div> 
+            {{{newchat}}}
+            {{{profile}}}
+        </div>
+        <div>
+        </div>
+         <div>
+            {{{chatsList}}}
+         </div>
+    </div>
+    <div>
+        {{{messenger}}}
+    </div>
 </main>

@@ -11,7 +11,6 @@ import { SignupData } from "../../api/AuthAPI";
 import AuthController from "../../controllers/AuthController";
 
 let errors;
-
 export class SignUpBase extends Block {
   constructor() {
     super({});

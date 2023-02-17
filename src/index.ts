@@ -4,7 +4,7 @@ import { SignUpPage } from "./pages/signUp/signUp";
 import { ChatPage } from "./pages/chats/chats";
 import AuthController from "./controllers/authController";
 import Router from "./utils/router";
-import { ChangeDataProfilePage } from "./pages/changeDataProfile/changeDataProfile";
+import { ChangeDataProfile } from "./pages/changeDataProfile/changeDataProfile";
 import { ChangePasswordProfile } from "./pages/changePasswordProfile/changePasswordProfile";
 
 enum Routes {
@@ -22,7 +22,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   Router.use(Routes.Index, SignInPage)
     .use(Routes.Register, SignUpPage)
     .use(Routes.Profile, ProfilePage)
-    .use(Routes.EditProfile, ChangeDataProfilePage)
+    .use(Routes.EditProfile, ChangeDataProfile)
     .use(Routes.Password, ChangePasswordProfile)
     .use(Routes.Chats, ChatPage)
     .start();

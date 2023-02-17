@@ -4,7 +4,6 @@ import { Input } from "../input/input";
 import { Button } from "../button/button";
 import styles from "./selectedChat.module.scss";
 import { withStore } from "../../utils/store";
-import { FixMeLater } from "../../types";
 import { Message } from "../../layout/message/message";
 import MessagesController, {
   Message as MessageInfo,
@@ -12,11 +11,11 @@ import MessagesController, {
 
 interface MessengerProps {
   selectedChat: number | undefined;
-  messages: FixMeLater;
+  messages: MessageInfo[];
   userId: number;
 }
 
-class SelectedChatBase extends Block<MessengerProps> {
+class SelecledChatBase extends Block<MessengerProps> {
   constructor(props: MessengerProps) {
     super(props);
   }
@@ -27,7 +26,7 @@ class SelectedChatBase extends Block<MessengerProps> {
       type: "text",
       placeholder: "Сообщение",
       name: "message",
-      pattern: `/^.+$/`,
+      class: styles.content_messenger_input,
     });
 
     this.children.button = new Button({
@@ -56,12 +55,12 @@ class SelectedChatBase extends Block<MessengerProps> {
   }
 
   private createMessages(props: MessengerProps) {
-    return props.messages.map((data: FixMeLater) => {
+    return props.messages.map((data) => {
       return new Message({ ...data, isMine: props.userId === data.user_id });
     });
   }
 
-  protected render() {
+  protected render(): DocumentFragment {
     return this.compile(selectedChatTemplate, { ...this.props, styles });
   }
 }
@@ -84,4 +83,4 @@ const withSelectedChatMessages = withStore((state) => {
   };
 });
 
-export const SelectedChat = withSelectedChatMessages(SelectedChatBase);
+export const SelectedChat = withSelectedChatMessages(SelecledChatBase);

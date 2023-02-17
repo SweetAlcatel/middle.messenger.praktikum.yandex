@@ -1,32 +1,32 @@
-<main class="{{styles.layout}}">
+<main class="{{styles.profile}}">
      {{#if flagNewAvatar}}
         {{{modal}}}
     {{/if}}
-    <div class="{{styles.back}}"> {{{back_icon}}} </div>
-       <div class="{{styles.content_card}}">
+    <div>{{{back_icon}}}</div>
+       <div>
           {{{avatar}}}
-           <div class="{{styles.card_title}}"> {{first_name}} </div>
-            <div class="{{styles.card_field}}">
-                <label class="{{styles.card_field_name}}">Почта</label>
-                <div class="{{styles.card_field_value}}">{{email}}</div>
+           <div> {{first_name}} </div>
+            <div>
+                <label>Почта</label>
+                <div>{{email}}</div>
            </div>           
-           <div class="{{styles.card_field}}">
-                <label class="{{styles.card_field_name}}">Логин</label>
-                <div class="{{styles.card_field_value}}">{{login}}</div>
+           <div>
+                <label>Логин</label>
+                <div>{{login}}</div>
            </div>           
-           <div class="{{styles.card_field}}">
-                <label class="{{styles.card_field_name}}">Имя</label>
-                <div class="{{styles.card_field_value}}">{{first_name}}</div>
+           <div>
+                <label>Имя</label>
+                <div>{{first_name}}</div>
            </div>                     
-           <div class="{{styles.card_field}}">
-                <label class="{{styles.card_field_name}}">Фамилия</label>
-                <div class="{{styles.card_field_value}}">{{second_name}}</div>
+           <div>
+                <label>Фамилия</label>
+                <div>{{second_name}}</div>
            </div>                    
-           <div class="{{styles.card_field}}">
-                <label class="{{styles.card_field_name}}">Телефон</label>
-                <div class="{{styles.card_field_value}}">{{phone}}</div>
+           <div>
+                <label>Телефон</label>
+                <div>{{phone}}</div>
            </div>    
-           <div class="{{styles.card_footer}}">
+           <div>
            {{{button_change_data}}}
            {{{button_change_password}}}
            {{{button_exit}}}

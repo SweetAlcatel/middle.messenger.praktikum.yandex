@@ -7,6 +7,7 @@ import store, { withStore } from "../../utils/store";
 import AuthController from "../../controllers/AuthController";
 import { ModalAvatar } from "../../layout/modalAvatar/modalAvatar";
 import avatar from "../../../public/static/icons/avatar.png";
+import styles from "./profile.module.scss";
 
 class ProfilePageBase extends Block {
   init() {
@@ -69,7 +70,7 @@ class ProfilePageBase extends Block {
   }
 
   render() {
-    return this.compile(profileTemplate, this.props);
+    return this.compile(profileTemplate, { ...this.props, styles });
   }
 }
 

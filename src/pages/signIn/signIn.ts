@@ -34,7 +34,7 @@ class SignInPage extends Block {
 
     this.children.link = new Link({
       label: "Нет аккаунта?",
-      to: "/sign-up",
+      to: "/signUp",
     });
   }
   onSubmit() {
