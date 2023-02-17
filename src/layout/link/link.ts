@@ -1,11 +1,18 @@
-import { FixMeLater } from "../../types";
 import { Block } from "../../utils/block";
 import linkTemplate from "bundle-text:./link.hbs";
 import styles from "./link.module.scss";
-import { withRouter } from "../../utils/withRouter";
+import { withRouter, PropsWithRouter } from "../../utils/withRouter";
 
-class BaseLink extends Block<FixMeLater> {
-  constructor(props: FixMeLater) {
+interface LinkProps extends PropsWithRouter {
+  to: string;
+  label: string;
+  events?: {
+    click: () => void;
+  };
+}
+
+class BaseLink extends Block<LinkProps> {
+  constructor(props: LinkProps) {
     super({
       ...props,
       events: {

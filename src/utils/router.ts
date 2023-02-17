@@ -1,4 +1,4 @@
-import { FixMeLater } from "../types";
+import { Block } from "./block";
 import { Route } from "./route";
 
 class Router {
@@ -17,25 +17,11 @@ class Router {
     Router.__instance = this;
   }
 
-  public use(pathname: string, block: FixMeLater) {
+  public use(pathname: string, block: typeof Block) {
     const route = new Route(pathname, block, this.rootQuery);
     this.routes.push(route);
 
     return this;
-  }
-
-  public go(pathname: string) {
-    this.history.pushState({}, "", pathname);
-
-    this._onRoute(pathname);
-  }
-
-  public back() {
-    this.history.back();
-  }
-
-  public forward() {
-    this.history.forward();
   }
 
   public start() {
@@ -64,9 +50,23 @@ class Router {
     route.render();
   }
 
+  public go(pathname: string) {
+    this.history.pushState({}, "", pathname);
+
+    this._onRoute(pathname);
+  }
+
+  public back() {
+    this.history.back();
+  }
+
+  public forward() {
+    this.history.forward();
+  }
+
   private getRoute(pathname: string) {
     return this.routes.find((route) => route.match(pathname));
   }
 }
 
-export { Router };
+export default new Router(".root");

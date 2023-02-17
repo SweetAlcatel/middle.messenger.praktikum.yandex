@@ -5,7 +5,7 @@ import { Chat } from "../chat/chat";
 import { withStore } from "../../utils/store";
 import styles from "./chatList.module.scss";
 import { FixMeLater } from "../../types";
-import { chatsInstance } from "../../controllers/chatsController";
+import ChatController from "../../controllers/ChatController";
 
 class ChatsListBase extends Block<FixMeLater> {
   constructor(props: FixMeLater) {
@@ -32,7 +32,7 @@ class ChatsListBase extends Block<FixMeLater> {
         ...data,
         events: {
           click: () => {
-            chatsInstance.selectChat(data.id);
+            ChatController.selectChat(data.id);
           },
         },
       });

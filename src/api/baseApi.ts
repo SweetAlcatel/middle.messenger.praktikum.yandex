@@ -1,6 +1,6 @@
-import { HTTPTransport } from "../utils/request";
+import { HTTPTransport } from "..//utils/request";
 
-abstract class BaseApi {
+export default abstract class BaseAPI {
   protected http: HTTPTransport;
 
   protected constructor(endpoint: string) {
@@ -9,14 +9,9 @@ abstract class BaseApi {
 
   public abstract create?(data: unknown): Promise<unknown>;
 
-  public abstract read?(identifier?: string | number): Promise<unknown>;
+  public abstract read?(identifier?: string): Promise<unknown>;
 
-  public abstract update?(
-    identifier: string | number,
-    data: unknown
-  ): Promise<unknown>;
+  public abstract update?(identifier: string, data: unknown): Promise<unknown>;
 
-  public abstract delete?(identifier: string | number): Promise<unknown>;
+  public abstract delete?(identifier: string): Promise<unknown>;
 }
-
-export { BaseApi };

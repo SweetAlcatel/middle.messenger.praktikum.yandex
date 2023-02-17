@@ -1,13 +1,13 @@
 import { EventBus } from "./eventBus";
 
-export enum WebsocketEvents {
+export enum WSTransportEvents {
   Connected = "connected",
   Error = "error",
   Message = "message",
   Close = "close",
 }
 
-class Websocket extends EventBus {
+export default class WSTransport extends EventBus {
   private socket: WebSocket | null = null;
   private pingInterval: number = 0;
 
@@ -15,8 +15,26 @@ class Websocket extends EventBus {
     super();
   }
 
-  public send(data: any) {
-    this.socket?.send(JSON.stringify(data));
+  public send(data: unknown) {
+    if (!this.socket) {
+      throw new Error("Socket is not connected");
+    }
+
+    this.socket.send(JSON.stringify(data));
+  }
+
+  public connect(): Promise<void> {
+    this.socket = new WebSocket(this.url);
+
+    this.subscribe(this.socket);
+
+    this.setupPing();
+
+    return new Promise((resolve) => {
+      this.on(WSTransportEvents.Connected, () => {
+        resolve();
+      });
+    });
   }
 
   public close() {
@@ -28,37 +46,23 @@ class Websocket extends EventBus {
       this.send({ type: "ping" });
     }, 5000);
 
-    this.on(WebsocketEvents.Close, () => {
+    this.on(WSTransportEvents.Close, () => {
       clearInterval(this.pingInterval);
 
       this.pingInterval = 0;
     });
   }
 
-  public connect() {
-    this.socket = new WebSocket(this.url);
-
-    this.subscribe(this.socket);
-
-    this.setupPing();
-
-    return new Promise((resolve) => {
-      this.on(WebsocketEvents.Connected, () => {
-        resolve();
-      });
-    });
-  }
-
   private subscribe(socket: WebSocket) {
     socket.addEventListener("open", () => {
-      this.emit(WebsocketEvents.Connected);
+      this.emit(WSTransportEvents.Connected);
     });
     socket.addEventListener("close", () => {
-      this.emit(WebsocketEvents.Close);
+      this.emit(WSTransportEvents.Close);
     });
 
     socket.addEventListener("error", (e) => {
-      this.emit(WebsocketEvents.Error, e);
+      this.emit(WSTransportEvents.Error, e);
     });
 
     socket.addEventListener("message", (message) => {
@@ -68,9 +72,7 @@ class Websocket extends EventBus {
         return;
       }
 
-      this.emit(WebsocketEvents.Message, data);
+      this.emit(WSTransportEvents.Message, data);
     });
   }
 }
-
-export { Websocket };

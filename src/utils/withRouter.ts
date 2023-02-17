@@ -1,11 +1,11 @@
-import { Router } from "./router";
+import Router from "./router";
 import { Block } from "./block";
 import { FixMeLater } from "../types";
 
-export function withRouter(Component: typeof Block<FixMeLater>) {
+export function withRouter(Component: typeof Block<any>) {
   type Props = typeof Component extends typeof Block<FixMeLater>
     ? FixMeLater
-    : FixMeLater;
+    : any;
 
   return class WithRouter extends Component {
     constructor(props: Props & PropsWithRouter) {

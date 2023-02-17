@@ -3,20 +3,22 @@ import { Block } from "../../utils/block";
 import styles from "./input.module.scss";
 
 interface InputProps {
-  name?: string;
+  name: string;
+  id?: string;
+  class?: string;
+  error?: string;
   type: string;
-  placeholder?: string;
-  events?: Record<string, any>;
-  pattern?: string;
+  placeholder: string;
+  events?: {
+    blur?: () => void;
+    click?: () => void;
+    change?: () => void;
+  };
 }
 
 export class Input extends Block<InputProps> {
   constructor(props: InputProps) {
     super(props);
-  }
-
-  public setValue(value: string) {
-    return ((this.element as HTMLInputElement).value = value);
   }
 
   public getName() {
@@ -25,6 +27,10 @@ export class Input extends Block<InputProps> {
 
   public getValue() {
     return (this.element as HTMLInputElement).value;
+  }
+
+  public setValue(value: string) {
+    (this.element as HTMLInputElement).value = value;
   }
 
   render() {

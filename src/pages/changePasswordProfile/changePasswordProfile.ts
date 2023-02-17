@@ -1,60 +1,124 @@
 import { Block } from "../../utils/block";
-import changePasswordProfile from "bundle-text:./changePasswordProfile.hbs";
-import { FixMeLater } from "../../types/index";
-import { withStore } from "../../utils/store";
+import changePasswordProfileTemplate from "bundle-text:./changePasswordProfile.hbs";
+import store, { withStore } from "../../utils/store";
+import { Link } from "../../layout/link/link";
+import UserController from "../../controllers/UserController";
 import { Input } from "../../layout/input/input";
 import styles from "./changePasswordProfile.module.scss";
-import { userInstance } from "../../controllers/userController";
 import { Button } from "../../layout/button/button";
+import { validation } from "../../utils/validation";
 
-class changePasswordProfileBase extends Block<FixMeLater> {
+let errors;
+
+export class ChangePasswordProfileBase extends Block {
+  constructor() {
+    super({});
+  }
+
   init() {
-    this.children.oldPassword = new Input({
+    this.children.old_password = new Input({
+      name: "old_password",
       type: "password",
       placeholder: "Введите старый пароль",
     });
 
-    this.children.newPassword = new Input({
+    this.children.new_password = new Input({
+      name: "password",
       type: "password",
       placeholder: "Введите новый пароль",
-    });
-
-    this.children.newPasswordAgain = new Input({
-      type: "password",
-      placeholder: "Введите новый пароль еще раз",
-    });
-
-    this.children.savePassword = new Button({
-      text: "Сохранить пароль",
       events: {
-        click: () => {
-          this.onSubmit();
-        },
+        blur: () => this.blur(),
       },
     });
+
+    this.children.repeat_new_password = new Input({
+      name: "repeat_password",
+      type: "password",
+      placeholder: "Повторите пароль",
+      events: {
+        blur: () => this.blur(),
+      },
+    });
+
+    this.children.save = new Button({
+      text: "Сохранить",
+      events: {
+        click: () => this.onSubmit(),
+      },
+    });
+
+    this.children.link = new Link({
+      label: "Отменить",
+      to: "/profile",
+    });
   }
 
-  protected componentDidUpdate(
-    oldProps: FixMeLater,
-    newProps: FixMeLater
-  ): boolean {
-    return false;
-  }
   onSubmit() {
     const values = Object.values(this.children)
       .filter((child) => child instanceof Input)
-      .map((child) => [(child as Input).getValue()]);
+      .map((child) => [
+        (child as Input).getName(),
+        (child as Input).getValue(),
+      ]);
 
     const data = Object.fromEntries(values);
+    console.log(data);
 
-    userInstance.updatePassword(data);
+    errors = {
+      error_email: "",
+      error_login: "",
+      error_password: "",
+      error_repeat_password: "",
+      error_first_name: "",
+      error_second_name: "",
+      error_phone: "",
+    };
+
+    const resultValidation = validation(data, errors);
+
+    store.set("errors", errors);
+
+    if (resultValidation) {
+      UserController.setpassword({
+        oldPassword: data.old_password,
+        newPassword: data.password,
+      });
+    }
+  }
+
+  blur() {
+    const values = Object.values(this.children)
+      .filter((child) => child instanceof Input)
+      .map((child) => [
+        (child as Input).getName(),
+        (child as Input).getValue(),
+      ]);
+
+    const registationData = Object.fromEntries(values);
+
+    errors = {
+      error_email: "",
+      error_login: "",
+      error_password: "",
+      error_repeat_password: "",
+      error_first_name: "",
+      error_second_name: "",
+      error_phone: "",
+    };
+
+    const resultValidation = validation(registationData, errors);
+
+    store.set("errors", errors);
   }
 
   render() {
-    return this.compile(changePasswordProfile, { ...this.props, styles });
+    return this.compile(changePasswordProfileTemplate, {
+      ...this.props,
+      styles,
+    });
   }
 }
 
-const withUser = withStore((state) => ({ ...state.user }));
+const withUser = withStore((state) => ({ ...state.errors, styles }));
 
-export const ChangePasswordProfile = withUser(changePasswordProfileBase);
+export const ChangePasswordProfile = withUser(ChangePasswordProfileBase);

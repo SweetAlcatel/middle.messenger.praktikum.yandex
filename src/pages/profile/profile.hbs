@@ -1,11 +1,35 @@
-<div>
-    <h2>
-        Мои данные:
-    </h2>
-    {{#each fields}}
-        {{{this}}}
-    {{/each}}
-    {{{linkChangeData}}}
-    {{{linkChangePassword}}}
-    {{{ logoutButton }}}
-</div>
+<main class="{{styles.profile}}">
+     {{#if flagNewAvatar}}
+        {{{modal}}}
+    {{/if}}
+    <div>{{{back_icon}}}</div>
+       <div>
+          {{{avatar}}}
+           <div> {{first_name}} </div>
+            <div>
+                <label>Почта</label>
+                <div>{{email}}</div>
+           </div>           
+           <div>
+                <label>Логин</label>
+                <div>{{login}}</div>
+           </div>           
+           <div>
+                <label>Имя</label>
+                <div>{{first_name}}</div>
+           </div>                     
+           <div>
+                <label>Фамилия</label>
+                <div>{{second_name}}</div>
+           </div>                    
+           <div>
+                <label>Телефон</label>
+                <div>{{phone}}</div>
+           </div>    
+           <div>
+           {{{button_change_data}}}
+           {{{button_change_password}}}
+           {{{button_exit}}}
+           </div>
+    </div>
+</main>

@@ -1,6 +1,5 @@
-import { FixMeLater } from "../types";
+import WSTransport, { WSTransportEvents } from "../utils/websocket";
 import store from "../utils/store";
-import { Websocket, WebsocketEvents } from "../utils/websocket";
 
 export interface Message {
   chat_id: number;
@@ -19,8 +18,8 @@ export interface Message {
   };
 }
 
-class MessageController {
-  private sockets: Map<number, FixMeLater> = new Map();
+class MessagesController {
+  private sockets: Map<number, WSTransport> = new Map();
 
   async connect(id: number, token: string) {
     if (this.sockets.has(id)) {
@@ -29,7 +28,7 @@ class MessageController {
 
     const userId = store.getState().user.id;
 
-    const wsTransport = new Websocket(
+    const wsTransport = new WSTransport(
       `wss://ya-praktikum.tech/ws/chats/${userId}/${id}/${token}`
     );
 
@@ -88,12 +87,17 @@ class MessageController {
     this.sockets.delete(id);
   }
 
-  private subscribe(transport: FixMeLater, id: number) {
-    transport.on(WebsocketEvents.Message, (message: FixMeLater) =>
+  private subscribe(transport: WSTransport, id: number) {
+    transport.on(WSTransportEvents.Message, (message) =>
       this.onMessage(id, message)
     );
-    transport.on(WebsocketEvents.Close, () => this.onClose(id));
+    transport.on(WSTransportEvents.Close, () => this.onClose(id));
   }
 }
 
-export const messageInstance = new MessageController();
+const controller = new MessagesController();
+
+// @ts-ignore
+window.messagesController = controller;
+
+export default controller;
