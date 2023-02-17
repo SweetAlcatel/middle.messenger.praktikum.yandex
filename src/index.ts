@@ -24,8 +24,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     .use(Routes.Profile, ProfilePage)
     .use(Routes.EditProfile, ChangeDataProfile)
     .use(Routes.Password, ChangePasswordProfile)
-    .use(Routes.Chats, ChatPage)
-    .start();
+    .use(Routes.Chats, ChatPage);
 
   let isProtectedRoute = true;
 
