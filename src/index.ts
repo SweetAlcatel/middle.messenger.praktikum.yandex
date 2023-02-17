@@ -24,20 +24,19 @@ window.addEventListener("DOMContentLoaded", async () => {
     .use(Routes.Profile, ProfilePage)
     .use(Routes.EditProfile, ChangeDataProfile)
     .use(Routes.Password, ChangePasswordProfile)
-    .use(Routes.Chats, ChatPage);
+    .use(Routes.Chats, ChatPage)
+    .start();
 
   let isProtectedRoute = true;
 
   switch (window.location.pathname) {
     case Routes.Index:
     case Routes.Register:
-      isProtectedRoute = false;
+      isProtectedRoute = true;
       break;
   }
-
   try {
     await AuthController.fetchUser();
-
     Router.start();
 
     if (!isProtectedRoute) {
