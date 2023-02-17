@@ -8,6 +8,7 @@ import UserController from "../../controllers/UserController";
 import avatar from "../../../public/static/icons/avatar.png";
 import { withStore } from "../../utils/store";
 import store from "../../utils/store";
+import styles from "./changeDataProfile.module.scss";
 
 class ChangeDataProfileBase extends Block {
   init() {
@@ -103,7 +104,7 @@ class ChangeDataProfileBase extends Block {
   }
 
   render() {
-    return this.compile(changeDataProfileTemplage, this.props);
+    return this.compile(changeDataProfileTemplage, { ...this.props, styles });
   }
 }
 

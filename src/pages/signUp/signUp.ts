@@ -145,6 +145,8 @@ export class SignUpBase extends Block {
     const resultValidation = validation(registationData, errors);
 
     store.set("errors", errors);
+
+    console.log(store);
   }
 
   render() {
