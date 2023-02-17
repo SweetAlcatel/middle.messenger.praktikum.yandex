@@ -4,6 +4,8 @@ import template from "bundle-text:./modalNewChat.hbs";
 import store from "../../utils/store";
 import { Input } from "../../layout/input/input";
 import ChatController from "../../controllers/ChatController";
+import styles from "./modalNewChat.module.scss";
+
 interface ModalProps {
   flagNewChat: boolean;
   class?: string;
@@ -57,7 +59,7 @@ class Modal extends Block<ModalProps> {
   }
 
   render() {
-    return this.compile(template, { ...this.props });
+    return this.compile(template, { ...this.props, styles });
   }
 }
 
