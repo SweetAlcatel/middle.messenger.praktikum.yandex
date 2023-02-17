@@ -1,6 +1,6 @@
 import { Block } from "../../utils/block";
 import { Button } from "../button/button";
-import modalAvatarTemplate from "bundle-text:./ModalAvatar.hbs";
+import modalAvatarTemplate from "bundle-text:./modalAvatar.hbs";
 import { Input } from "../input/input";
 import store from "../../utils/store";
 import UserController from "../../controllers/userController";
