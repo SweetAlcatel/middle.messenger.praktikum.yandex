@@ -1,58 +1,71 @@
 import { Block } from "../../utils/block";
 import profileTemplate from "bundle-text:./profile.hbs";
 import { Button } from "../../layout/button/button";
-import { Field } from "../../layout/field/field";
-import { authInstance } from "../../controllers/authController";
-import { FixMeLater } from "../../types";
-import { withStore } from "../../utils/store";
-import { Link } from "../../layout/link/link";
+import { Icon } from "../../layout/icon/icon";
+import router from "../../utils/router";
+import store, { withStore } from "../../utils/store";
+import AuthController from "../../controllers/AuthController";
+import { ModalAvatar } from "../../layout/modalAvatar/modalAvatar";
+import avatar from "../../../public/static/icons/avatar.png";
 
-const userFields = [
-  "id",
-  "first_name",
-  "second_name",
-  "display_name",
-  "login",
-  "avatar",
-  "email",
-  "phone",
-];
-
-class ProfilePageBase extends Block<FixMeLater> {
+class ProfilePageBase extends Block {
   init() {
-    this.children.fields = userFields.map((name) => {
-      return new Field({ name, value: this.props[name] });
-    });
+    let avatarUser = avatar;
 
-    this.children.linkChangeData = new Link({
-      link: "Изменить данные",
-      to: "/changeData",
-    });
+    if (store.getState().user) {
+      avatarUser = `https://ya-praktikum.tech/api/v2/resources${
+        store.getState().user.avatar
+      }`;
+    }
 
-    this.children.linkChangePassword = new Link({
-      link: "Изменить пароль",
-      to: "/changePassword",
-    });
-
-    this.children.logoutButton = new Button({
-      text: "Выйти",
+    this.children.back = new Button({
+      text: "Назад к чатам",
       events: {
         click: () => {
-          authInstance.logout();
+          router.go("/chats");
         },
       },
     });
-  }
 
-  protected componentDidUpdate(
-    oldProps: FixMeLater,
-    newProps: FixMeLater
-  ): boolean {
-    (this.children.fields as FixMeLater[]).forEach((field, i) => {
-      field.setProps({ value: newProps[userFields[i]] });
+    this.children.avatar = new Icon({
+      url: avatarUser,
+      events: {
+        click: () => {
+          store.set("flagNewAvatar", true);
+        },
+      },
     });
 
-    return false;
+    this.children.button_change_data = new Button({
+      text: "Изменить данные",
+      events: {
+        click: () => {
+          router.go("/changeData");
+        },
+      },
+    });
+
+    this.children.button_change_password = new Button({
+      text: "Изменить пароль",
+      events: {
+        click: () => {
+          router.go("/changePassword");
+        },
+      },
+    });
+
+    this.children.button_exit = new Button({
+      text: "Выйти",
+      events: {
+        click: () => {
+          AuthController.logout();
+        },
+      },
+    });
+
+    this.children.modal = new ModalAvatar({
+      flagNewAvatar: false,
+    });
   }
 
   render() {
@@ -60,6 +73,9 @@ class ProfilePageBase extends Block<FixMeLater> {
   }
 }
 
-const withUser = withStore((state) => ({ ...state.user }));
+const withUser = withStore((state) => ({
+  ...state.user,
+  flagNewAvatar: state.flagNewAvatar,
+}));
 
 export const ProfilePage = withUser(ProfilePageBase);

@@ -3,67 +3,93 @@ import signUpTemplate from "bundle-text:./signUp.hbs";
 import { Button } from "../../layout/button/button";
 import { Input } from "../../layout/input/input";
 import { Link } from "../../layout/link/link";
-import { authInstance } from "../../controllers/authController";
 import styles from "./signUp.module.scss";
-import { FixMeLater } from "../../types";
+import { validation } from "../../utils/validation";
+import store from "../../utils/store";
+import { withStore } from "../../utils/store";
+import { SignupData } from "../../api/AuthAPI";
+import AuthController from "../../controllers/AuthController";
 
-class SignUpPage extends Block {
+let errors;
+
+export class SignUpBase extends Block {
   constructor() {
     super({});
   }
 
   init() {
-    this.children.firstName = new Input({
-      name: "first_name",
-      type: "text",
-      placeholder: "Имя",
-      pattern: `/^[А-ЯЁA-Z][а-яёa-z-]*$/`,
-    });
-
-    this.children.secondName = new Input({
-      name: "second_name",
-      type: "text",
-      placeholder: "Фамилия",
-      pattern: `/^[А-ЯЁA-Z][а-яёa-z-]*$/`,
-    });
-
     this.children.email = new Input({
       name: "email",
-      type: "email",
-      placeholder: "E-mail",
-      pattern: `/^[a-zA-Z0-9._-]+@[a-zA-Z._-]+\.[a-zA-Z]{2,}$/`,
+      type: "text",
+      placeholder: "Email",
+      events: {
+        blur: () => this.blur(),
+      },
     });
 
     this.children.login = new Input({
       name: "login",
       type: "text",
       placeholder: "Логин",
-      pattern: `/^(?=.*[a-zA-Z])([\w-_]{3,20})$/`,
+      events: {
+        blur: () => this.blur(),
+      },
+    });
+
+    this.children.first_name = new Input({
+      name: "first_name",
+      type: "text",
+      placeholder: "Имя",
+      events: {
+        blur: () => this.blur(),
+      },
+    });
+
+    this.children.second_name = new Input({
+      name: "second_name",
+      type: "text",
+      placeholder: "Фамилия",
+      events: {
+        blur: () => this.blur(),
+      },
     });
 
     this.children.phone = new Input({
       name: "phone",
-      type: "tel",
+      type: "text",
       placeholder: "Телефон",
-      pattern: `/^(8|\+7)[0-9]{10,15}$/`,
+      events: {
+        blur: () => this.blur(),
+      },
     });
 
     this.children.password = new Input({
       name: "password",
       type: "password",
       placeholder: "Пароль",
-      pattern: `/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/`,
+      events: {
+        blur: () => this.blur(),
+      },
     });
 
-    this.children.button = new Button({
+    this.children.repeat_password = new Input({
+      name: "repeat_password",
+      type: "password",
+      placeholder: "Повторите пароль",
+      events: {
+        blur: () => this.blur(),
+      },
+    });
+
+    this.children.signup = new Button({
       text: "Зарегистрироваться",
       events: {
         click: () => this.onSubmit(),
       },
     });
 
-    this.children.link = new Link({
-      link: "Есть аккаунт?",
+    this.children.signin = new Link({
+      label: "Войти",
       to: "/",
     });
   }
@@ -76,9 +102,50 @@ class SignUpPage extends Block {
         (child as Input).getValue(),
       ]);
 
-    const data = Object.fromEntries(values);
+    const registationData = Object.fromEntries(values);
 
-    authInstance.signup(data as FixMeLater);
+    errors = {
+      error_email: "",
+      error_login: "",
+      error_password: "",
+      error_repeat_password: "",
+      error_first_name: "",
+      error_second_name: "",
+      error_phone: "",
+    };
+
+    const resultValidation = validation(registationData, errors);
+
+    store.set("errors", errors);
+
+    if (resultValidation) {
+      AuthController.signup(registationData as SignupData);
+    }
+  }
+
+  blur() {
+    const values = Object.values(this.children)
+      .filter((child) => child instanceof Input)
+      .map((child) => [
+        (child as Input).getName(),
+        (child as Input).getValue(),
+      ]);
+
+    const registationData = Object.fromEntries(values);
+
+    errors = {
+      error_email: "",
+      error_login: "",
+      error_password: "",
+      error_repeat_password: "",
+      error_first_name: "",
+      error_second_name: "",
+      error_phone: "",
+    };
+
+    const resultValidation = validation(registationData, errors);
+
+    store.set("errors", errors);
   }
 
   render() {
@@ -86,4 +153,6 @@ class SignUpPage extends Block {
   }
 }
 
-export { SignUpPage };
+const withUser = withStore((state) => ({ ...state.errors, styles }));
+
+export const SignUpPage = withUser(SignUpBase);

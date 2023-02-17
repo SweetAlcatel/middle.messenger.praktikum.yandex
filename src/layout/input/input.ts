@@ -10,9 +10,9 @@ interface InputProps {
   type: string;
   placeholder: string;
   events?: {
-    blur: () => void;
-    click: () => void;
-    change: () => void;
+    blur?: () => void;
+    click?: () => void;
+    change?: () => void;
   };
 }
 

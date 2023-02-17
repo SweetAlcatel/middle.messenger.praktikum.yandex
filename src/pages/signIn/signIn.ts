@@ -4,7 +4,8 @@ import styles from "./signIn.module.scss";
 import { Button } from "../../layout/button/button";
 import { Input } from "../../layout/input/input";
 import { Link } from "../../layout/link/link";
-import { authInstance } from "../../controllers/authController";
+import AuthController from "../../controllers/AuthController";
+import { SignupData } from "../../api/AuthAPI";
 
 class SignInPage extends Block {
   constructor() {
@@ -16,38 +17,38 @@ class SignInPage extends Block {
       name: "login",
       type: "text",
       placeholder: "Логин",
-      pattern: `/^(?=.*[a-zA-Z])([\w-_]{3,20})$/`,
     });
 
     this.children.password = new Input({
       name: "password",
       type: "password",
       placeholder: "Пароль",
-      pattern: `/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/`,
     });
 
     this.children.button = new Button({
       text: "Войти",
       events: {
-        click: () => {
-          const values = Object.values(this.children)
-            .filter((child) => child instanceof Input)
-            .map((child) => [
-              (child as Input).getName(),
-              (child as Input).getValue(),
-            ]);
-
-          const data = Object.fromEntries(values);
-
-          authInstance.signin(data as any);
-        },
+        click: () => this.onSubmit(),
       },
     });
 
     this.children.link = new Link({
-      link: "Регистрация",
-      to: "/signUp",
+      label: "Нет аккаунта?",
+      to: "/sign-up",
     });
+  }
+  onSubmit() {
+    const values = Object.values(this.children)
+      .filter((child) => child instanceof Input)
+      .map((child) => [
+        (child as Input).getName(),
+        (child as Input).getValue(),
+      ]);
+
+    const data = Object.fromEntries(values);
+    console.log(data as SignupData);
+
+    AuthController.signin(data as SignupData);
   }
 
   render() {

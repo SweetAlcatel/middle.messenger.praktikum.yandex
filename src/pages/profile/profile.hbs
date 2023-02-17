@@ -1,11 +1,35 @@
-<div>
-    <h2>
-        Мои данные:
-    </h2>
-    {{#each fields}}
-        {{{this}}}
-    {{/each}}
-    {{{linkChangeData}}}
-    {{{linkChangePassword}}}
-    {{{ logoutButton }}}
-</div>
+<main class="{{styles.layout}}">
+     {{#if flagNewAvatar}}
+        {{{modal}}}
+    {{/if}}
+    <div class="{{styles.back}}"> {{{back_icon}}} </div>
+       <div class="{{styles.content_card}}">
+          {{{avatar}}}
+           <div class="{{styles.card_title}}"> {{first_name}} </div>
+            <div class="{{styles.card_field}}">
+                <label class="{{styles.card_field_name}}">Почта</label>
+                <div class="{{styles.card_field_value}}">{{email}}</div>
+           </div>           
+           <div class="{{styles.card_field}}">
+                <label class="{{styles.card_field_name}}">Логин</label>
+                <div class="{{styles.card_field_value}}">{{login}}</div>
+           </div>           
+           <div class="{{styles.card_field}}">
+                <label class="{{styles.card_field_name}}">Имя</label>
+                <div class="{{styles.card_field_value}}">{{first_name}}</div>
+           </div>                     
+           <div class="{{styles.card_field}}">
+                <label class="{{styles.card_field_name}}">Фамилия</label>
+                <div class="{{styles.card_field_value}}">{{second_name}}</div>
+           </div>                    
+           <div class="{{styles.card_field}}">
+                <label class="{{styles.card_field_name}}">Телефон</label>
+                <div class="{{styles.card_field_value}}">{{phone}}</div>
+           </div>    
+           <div class="{{styles.card_footer}}">
+           {{{button_change_data}}}
+           {{{button_change_password}}}
+           {{{button_exit}}}
+           </div>
+    </div>
+</main>
