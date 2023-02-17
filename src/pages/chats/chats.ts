@@ -18,7 +18,6 @@ class ChatPageBase extends Block {
   init() {
     this.children.chatsList = new ChatsList({ isLoaded: false });
 
-    // @ts-ignore
     ChatController.getChats().finally(() => {
       (this.children.chatsList as Block).setProps({
         isLoaded: true,

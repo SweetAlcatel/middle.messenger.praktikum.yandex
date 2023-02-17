@@ -1,5 +1,5 @@
 import API from "../api/chatApi";
-import { ChatsAPI } from "../api/chatApi";
+import { ChatsAPI } from "../api/ChatApi";
 import store from "../utils/store";
 import MessagesController from "./messagesController";
 
