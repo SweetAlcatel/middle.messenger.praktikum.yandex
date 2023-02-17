@@ -3,7 +3,7 @@ import { Button } from "../button/button";
 import modalAvatarTemplate from "bundle-text:./ModalAvatar.hbs";
 import { Input } from "../input/input";
 import store from "../../utils/store";
-import UserController from "../../controllers/UserController";
+import UserController from "../../controllers/userController";
 
 interface ModalAvatarProps {
   flagNewAvatar: boolean;

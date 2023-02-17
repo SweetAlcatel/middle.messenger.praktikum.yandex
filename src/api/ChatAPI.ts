@@ -1,5 +1,5 @@
-import BaseAPI from "./BaseAPI";
-import { User } from "./AuthAPI";
+import BaseAPI from "./baseApi";
+import { User } from "./authApi";
 
 export interface ChatInfo {
   id: number;

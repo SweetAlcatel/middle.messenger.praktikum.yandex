@@ -1,7 +1,7 @@
-import API, { UserAPI } from "../api/UserAPI";
+import API, { UserAPI } from "../api/userApi";
 import store from "../utils/store";
 import router from "../utils/router";
-import AuthController from "./AuthController";
+import AuthController from "./authController";
 
 export class UserController {
   private readonly api: UserAPI;

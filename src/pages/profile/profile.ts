@@ -4,7 +4,7 @@ import { Button } from "../../layout/button/button";
 import { Icon } from "../../layout/icon/icon";
 import router from "../../utils/router";
 import store, { withStore } from "../../utils/store";
-import AuthController from "../../controllers/AuthController";
+import AuthController from "../../controllers/authController";
 import { ModalAvatar } from "../../layout/modalAvatar/modalAvatar";
 import avatar from "../../../public/static/icons/avatar.png";
 import styles from "./profile.module.scss";

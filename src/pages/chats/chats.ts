@@ -4,7 +4,7 @@ import { Button } from "../../layout/button/button";
 import { SelectedChat } from "../../layout/selectedChat/selectedChat";
 import { Modal } from "../../layout/modalNewChat/modalNewChat";
 import { ChatsList } from "../../layout/chatList/chatList";
-import ChatController from "../../controllers/ChatController";
+import ChatController from "../../controllers/chatController";
 import store from "../../utils/store";
 import { withStore } from "../../utils/store";
 import router from "../../utils/router";

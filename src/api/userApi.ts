@@ -1,4 +1,4 @@
-import BaseAPI from "./BaseAPI";
+import BaseAPI from "./baseApi";
 
 export class UserAPI extends BaseAPI {
   constructor() {

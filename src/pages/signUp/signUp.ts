@@ -7,8 +7,8 @@ import styles from "./signUp.module.scss";
 import { validation } from "../../utils/validation";
 import store from "../../utils/store";
 import { withStore } from "../../utils/store";
-import { SignupData } from "../../api/AuthAPI";
-import AuthController from "../../controllers/AuthController";
+import { SignupData } from "../../api/authApi";
+import AuthController from "../../controllers/authController";
 
 let errors;
 export class SignUpBase extends Block {

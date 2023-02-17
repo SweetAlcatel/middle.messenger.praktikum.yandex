@@ -5,7 +5,7 @@ import { Chat } from "../chat/chat";
 import { withStore } from "../../utils/store";
 import styles from "./chatList.module.scss";
 import { FixMeLater } from "../../types";
-import ChatController from "../../controllers/ChatController";
+import ChatController from "../../controllers/chatController";
 
 class ChatsListBase extends Block<FixMeLater> {
   constructor(props: FixMeLater) {

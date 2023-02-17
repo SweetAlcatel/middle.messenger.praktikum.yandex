@@ -2,7 +2,7 @@ import { Block } from "../../utils/block";
 import changePasswordProfileTemplate from "bundle-text:./changePasswordProfile.hbs";
 import store, { withStore } from "../../utils/store";
 import { Link } from "../../layout/link/link";
-import UserController from "../../controllers/UserController";
+import UserController from "../../controllers/userController";
 import { Input } from "../../layout/input/input";
 import styles from "./changePasswordProfile.module.scss";
 import { Button } from "../../layout/button/button";

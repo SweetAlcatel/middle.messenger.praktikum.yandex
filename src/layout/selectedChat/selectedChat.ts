@@ -7,7 +7,7 @@ import { withStore } from "../../utils/store";
 import { Message } from "../../layout/message/message";
 import MessagesController, {
   Message as MessageInfo,
-} from "../../controllers/MessagesController";
+} from "../../controllers/messagesController";
 
 interface MessengerProps {
   selectedChat: number | undefined;
