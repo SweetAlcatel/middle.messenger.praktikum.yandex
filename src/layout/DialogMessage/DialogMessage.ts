@@ -16,7 +16,8 @@ export class DialogMessage extends Block {
 
     const isMyMessage = user.id === this.props.userId;
     const authorMessage = users.find((user) => user.id === this.props.userId);
-    const displayName = authorMessage?.display_name || authorMessage?.first_name;
+    const displayName =
+      authorMessage?.display_name || authorMessage?.first_name;
 
     return this.compile(template, {
       ...this.props,

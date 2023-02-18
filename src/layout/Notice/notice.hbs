@@ -1,0 +1,10 @@
+{{#if text}}
+    <div class="{{ styles.notice }}
+        {{#if error}}{{styles.error}}{{/if}}
+        {{#if success}}{{styles.success}}{{/if}}
+">
+        {{text}}
+    </div>
+{{else}}
+    <div></div>
+{{/if}}

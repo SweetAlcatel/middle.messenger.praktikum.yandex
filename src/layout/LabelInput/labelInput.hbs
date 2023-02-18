@@ -1,0 +1,7 @@
+<label>
+    <span class="form-text">{{label}}</span>
+    {{{Input placeholder=placeholder type=type name=name value=value onFocus=onFocus onBlur=onBlur id=id}}}
+    {{#if error}}
+        <div class="input-error color-red">{{error}}</div>
+    {{/if}}
+</label>
