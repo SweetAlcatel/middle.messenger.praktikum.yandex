@@ -66,7 +66,10 @@ export class ChatAPI {
     return this.http.put("/users", { data });
   }
 
-  deleteUsersFromChat(data: { users: number[]; chatId: number }): Promise<void> {
+  deleteUsersFromChat(data: {
+    users: number[];
+    chatId: number;
+  }): Promise<void> {
     return this.http.delete("/users", { data });
   }
 
