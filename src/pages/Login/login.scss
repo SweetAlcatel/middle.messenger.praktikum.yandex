@@ -1,0 +1,53 @@
+@use "../../styles/variables";
+
+.formWrapper {
+  width: 340px;
+  box-shadow: 0 0 6px rgb(0 0 0 / 14%);
+  border-radius: 12px;
+  padding: 15px 30px 30px;
+  box-sizing: border-box;
+}
+
+.form h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.form {
+  label {
+    position: relative;
+    display: block;
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    margin-bottom: 20px;
+
+    &:not([type="file"]) {
+      border-bottom: 1px solid variables.$color-gray;
+    }
+
+    &:focus {
+      &:not([type="file"]) {
+        border-bottom: 1px solid variables.$color-primary;
+      }
+    }
+  }
+
+  button {
+    background: variables.$color-primary;
+    border-radius: 8px;
+    color: white;
+    border: none;
+    text-align: center;
+    width: 100%;
+    padding: 10px 0;
+    cursor: pointer;
+    margin-top: 30px;
+
+    &:hover {
+      background: variables.$color-primary-second;
+    }
+  }
+}
