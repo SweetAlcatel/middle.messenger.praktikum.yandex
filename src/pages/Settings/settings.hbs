@@ -1,0 +1,22 @@
+<div class="wrapper flexСenter">
+    <div class="formWrapper">
+        <form class="form" id="profileForm">
+            <h1>Редактировать профиль</h1>
+            {{{LabelInput label="Почта" value=email name="email" validation="email"}}}
+            {{{LabelInput label="Логин" value=login name="login" validation="login"}}}
+            {{{LabelInput label="Имя" value=first_name name="first_name" validation="name"}}}
+            {{{LabelInput label="Фамилия" value=second_name name="second_name" validation="name"}}}
+            {{{LabelInput label="Имя в чате" value=display_name name="display_name" validation="login"}}}
+            {{{LabelInput label="Телефон" type="tel" value=phone name="phone" validation="phone"}}}
+            {{{LabelInput label="Аватар" type="file" name="avatar" id="avatar"}}}
+
+            {{{Button label="Сохранить" type="submit" onClick=onClick}}}
+            <div class="flexCenter">
+                {{{Link label="На страницу профиля" to="/profile"}}}
+            </div>
+        </form>
+    </div>
+    {{#if notice}}
+        {{{Notice text=notice.text success=success error=notice.error}}}
+    {{/if}}
+</div>
