@@ -15,6 +15,7 @@
     "wordwrap": "1.0.0"
   },
   "devDependencies": {
+    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
     "@parcel/transformer-inline-string": "2.8.2",
     "@parcel/transformer-sass": "2.8.2",
     "@typescript-eslint/eslint-plugin": "5.48.2",
