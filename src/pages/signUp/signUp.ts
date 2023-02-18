@@ -1,10 +1,10 @@
 import { Block } from "../../utils/Block";
-import template from "./register.hbs";
+import template from "./signUp.hbs";
 import { getFormData } from "../../helpers/getFormData";
 import AuthController from "../../controllers/AuthController";
 import { ISignupData } from "../../api/interfaces";
 
-export class RegisterPage extends Block {
+export class SignUpPage extends Block {
   constructor() {
     super({});
   }

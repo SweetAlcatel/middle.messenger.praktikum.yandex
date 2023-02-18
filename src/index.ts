@@ -1,6 +1,6 @@
 import { ErrorPage } from "./pages/Error/Error";
 import { SignInPage } from "./pages/signIn/signIn";
-import { RegisterPage } from "./pages/Register/Register";
+import { SignUpPage } from "./pages/signUp/signUp";
 import { ProfilePage } from "./pages/Profile/Profile";
 import { SettingsPage } from "./pages/Settings/Settings";
 import { ProfileEditPassPage } from "./pages/ProfileEditPass/ProfileEditPass";
@@ -49,7 +49,7 @@ const authRedirectPaths = ["/", "/login"];
 window.addEventListener("DOMContentLoaded", async () => {
   Router.use("/", SignInPage)
     .use("/login", SignInPage)
-    .use("/signup", RegisterPage)
+    .use("/signup", SignUpPage)
     .use("/profile", ProfilePage)
     .use("/settings", SettingsPage)
     .use("/404", ErrorPage)
