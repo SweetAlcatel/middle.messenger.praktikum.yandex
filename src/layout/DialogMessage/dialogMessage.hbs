@@ -1,12 +1,12 @@
 {{#if (isTrue isMyMessage)}}
-    <div class="right-message">
+    <div class="rightMessage">
         {{content}}
-        <span class="message-time">{{time}}</span>
+        <span class="messageTime">{{time}}</span>
     </div>
 {{else}}
-    <div class="left-message">
-        <div class="author-message">{{author}}</div>
+    <div class="leftMessage">
+        <div class="authorMessage">{{author}}</div>
         {{content}}
-        <span class="message-time">{{time}}</span>
+        <span class="messageTime">{{time}}</span>
     </div>
 {{/if}}
