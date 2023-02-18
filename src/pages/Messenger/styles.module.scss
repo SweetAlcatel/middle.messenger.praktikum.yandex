@@ -1,0 +1,115 @@
+/* stylelint-disable no-descending-specificity */
+@use "../../styles/variables";
+
+.chat {
+  display: flex;
+
+  .dialogs {
+    gap: 20px;
+    background: #f8f7fa;
+    flex: 0 1 350px;
+    border-right: 1px solid variables.$color-gray-light;
+
+    .info {
+      text-align: right;
+      padding: 20px 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      a {
+        color: variables.$color-gray;
+        font-size: 12px;
+      }
+    }
+
+    .search {
+      padding: 0 10px;
+      display: flex;
+      gap: 10px;
+
+      input {
+        width: 95%;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid variables.$color-gray-light;
+      }
+    }
+
+    .content {
+      flex: 1 1 400px;
+      overflow-y: auto;
+    }
+  }
+}
+
+.singleDialog {
+  padding: 10px 20px;
+  flex: 1;
+}
+
+.dialogTime {
+  text-align: center;
+  color: variables.$color-gray;
+  font-size: 12px;
+}
+
+.messageTime {
+  position: absolute;
+  color: variables.$color-gray;
+  bottom: 4px;
+  right: 8px;
+  font-size: 10px;
+}
+
+.leftMessage {
+  max-width: 48%;
+  background: #f8f8f8;
+  border: 1px solid variables.$color-gray-light;
+  align-self: flex-start;
+  padding: 9px 7px 15px;
+  margin: 5px 0;
+}
+
+.rightMessage {
+  max-width: 48%;
+  padding: 9px 7px 15px;
+  background: #e4edfd;
+  align-self: flex-end;
+  margin: 5px 0;
+}
+
+.dialogMessage {
+  gap: 14px;
+  padding: 10px;
+
+  input {
+    width: 90%;
+    background: variables.$color-gray-second;
+    border: 1px solid variables.$color-gray;
+    padding: 5px 15px;
+    border-radius: 15px;
+  }
+
+  .attach {
+    background: url("/public/static/svg/attach.svg") center center no-repeat;
+  }
+
+  .arrowRight {
+    background: url("/public/static/svg/arrow.svg") center center no-repeat;
+  }
+}
+
+.pageButton {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
+
+.authorMessage {
+  margin: 0;
+  padding: 0;
+  text-align: right;
+  color: gray;
+  font-size: 11px;
+}
