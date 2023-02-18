@@ -1,0 +1,26 @@
+<div class="wrapper flexCenter">
+    <div class="{{styles.content}}">
+        <h1>Профиль</h1>
+        <div class="{{styles.avatar}}">
+            {{#if avatar}}
+                {{{ Avatar path=avatar width=150 height=150}}}
+            {{/if}}
+            <p class="text-bold">{{first_name}}</p>
+        </div>
+        <div class="{{styles.informations}}">
+            {{{Info param="Почта" value=email}}}
+            {{{Info param="Логин" value=login}}}
+            {{{Info param="Имя" value=first_name}}}
+            {{{Info param="Фамилия" value=second_name}}}
+            {{{Info param="Имя в чате" value=display_name}}}
+            {{{Info param="Телефон" value=phone}}}
+        </div>
+        <div class="{{styles.buttons}}">
+            {{{Link label="Перейти в чат" to="/messenger"}}}
+            {{{Link label="Изменить данные" to="/settings"}}}
+            {{{Link label="Изменить пароль" to="/profileEditPass"}}}
+
+            {{{Button label="Выйти" onClick=onLogout}}}
+        </div>
+    </div>
+</div>
