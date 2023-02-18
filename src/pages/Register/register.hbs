@@ -1,0 +1,15 @@
+<div class="wrapper flexCenter">
+    <div class="formWrapper">
+        <form class="form">
+            <h1>Регистрация</h1>
+            {{{LabelInput label="Имя" name="first_name" validation="name"}}}
+            {{{LabelInput label="Фамилия" name="second_name" validation="name"}}}
+            {{{LabelInput label="Логин" name="login" validation="login"}}}
+            {{{LabelInput label="Почта" name="email" type="email" validation="email"}}}
+            {{{LabelInput label="Пароль" name="password" type="password" validation="password"}}}
+            {{{LabelInput label="Телефон" name="phone" type="tel" validation="phone"}}}
+            {{{Button label="Регистрация" width="100%" type="submit" onClick=onClick}}}
+            {{{Link label="Вход" to="/login"}}}
+        </form>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+.notice {
+  width: 200px;
+  height: auto;
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.warning {
+  background: #dd3b3b;
+}
+
+.success {
+  background: #4b65ce;
+}

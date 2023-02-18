@@ -1,0 +1,43 @@
+@use "../../styles/variables";
+
+.dialogWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+}
+
+.dialogContent {
+  padding: 10px;
+  display: flex;
+  flex: 1 1 500px;
+  flex-direction: column;
+  border-bottom: 1px solid variables.$color-gray-light;
+  overflow-y: auto;
+
+  div {
+    border-radius: 10px;
+    position: relative;
+    min-width: 100px;
+  }
+}
+
+.dialogMessage {
+  gap: 14px;
+  padding: 10px;
+
+  input {
+    width: 90%;
+    background: variables.$color-gray-second;
+    border: 1px solid variables.$color-gray;
+    padding: 5px 15px;
+    border-radius: 15px;
+  }
+
+  .attach {
+    background: url("/public/static/svg/attach.svg") center center no-repeat;
+  }
+
+  .arrowRight {
+    background: url("/public/static/svg/arrow.svg") center center no-repeat;
+  }
+}

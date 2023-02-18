@@ -1,0 +1,33 @@
+<div>
+    <div>
+        <h1>Добавить пользователя в чат</h1>
+        <form>
+            {{{Input placeholder="Поиск" name="search" id="search-user" value=searchUserText}}}
+            {{{Button label="Искать" onClick=onSearch}}}
+        </form>
+    </div>
+    <div>
+        <table class="{{styles.usersTable}}">
+            <th>Логин</th>
+            <th>Логин</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Почта</th>
+            <th></th>
+            {{#each users}}
+                <tr>
+                    <td>
+                        {{#if avatar}}
+                            {{{ Avatar path=avatar width=60 height=60}}}
+                        {{/if}}
+                    </td>
+                    <td>{{login}}</td>
+                    <td>{{first_name}}</td>
+                    <td>{{second_name}}</td>
+                    <td>{{email}}</td>
+                    <td>{{{Button label="Добавить" id=id onClick=../onAdd}}}</td>
+                </tr>
+            {{/each}}
+        </table>
+    </div>
+</div>
