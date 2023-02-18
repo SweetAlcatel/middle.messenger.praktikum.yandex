@@ -1,0 +1,105 @@
+@use "../../src/styles/variables";
+@import "../../src/pages/Login/login";
+@import ".../../src/pages/Error/error";
+@import "../../src/pages/Profile/styles.module";
+@import "../../src/pages/Messenger/styles.module";
+@import "../../src/layout/DialogInfo/styles.module";
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: Verdana, serif;
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 20px;
+  line-height: 20px;
+  margin: 20px 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+input {
+  padding: 5px;
+}
+
+ul {
+  margin: 0 20px;
+
+  li {
+    margin: 20px;
+  }
+}
+
+.wrapper {
+  min-height: 100vh;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.flex {
+  display: flex;
+}
+
+.flexAuto {
+  flex: 1 1 auto;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.textBold {
+  font-weight: 600;
+}
+
+.colorRed {
+  color: variables.$color-red;
+}
+
+.inputError {
+  font-size: 10px;
+  position: absolute;
+  bottom: 4px;
+}
+
+#notification {
+  height: auto;
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  transition: all 1s ease-out;
+
+  > div {
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    width: 200px;
+    margin: 10px 0;
+  }
+}
+
+.warning {
+  background: #dd3b3b;
+}
+
+.success {
+  background: #4b65ce;
+}

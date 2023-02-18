@@ -4,6 +4,8 @@ button {
   border: 1px solid gray;
   padding: 5px;
   cursor: pointer;
+  background-color: blue;
+  color: white;
 
   &:hover {
     opacity: 0.8;
