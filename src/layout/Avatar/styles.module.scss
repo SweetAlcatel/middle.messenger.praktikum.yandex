@@ -1,0 +1,10 @@
+@use "./src/styles/mixins";
+
+.avatar {
+  @include mixins.flex-center;
+
+  overflow: hidden;
+  border-radius: 100px;
+  background: #e7e0e0;
+  margin: 10px 0;
+}

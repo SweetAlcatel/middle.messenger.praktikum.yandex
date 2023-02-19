@@ -1,15 +1,14 @@
-<main class="loginWrapper">
-    <form class="loginContainer">
-        <h2>Вход</h2>
-        <div class="field">
-            <label for="login">Логин</label>
-            {{{inputLogin}}}
-        </div>
-        <div class="field">
-            <label for="password">Пароль</label>
-            {{{inputPassword}}}
-        </div>
-        {{{button}}}
-        <a>Нет аккаунта?</a>
-    </form>
-</main>
+<div class="wrapper flexCenter">
+    <div class="formWrapper">
+        <form class="form">
+            <h1>Авторизация</h1>
+
+            {{{LabelInput label="Логин" name="login" validation="login"}}}
+            {{{LabelInput label="Пароль" name="password" type="password" validation="password"}}}
+
+            {{{Button label="Вход" type="submit" width="100%" onClick=onClick}}}
+
+            {{{Link label="Регистрация" to="/signup"}}}
+        </form>
+    </div>
+</div>

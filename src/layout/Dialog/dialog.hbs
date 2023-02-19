@@ -1,0 +1,14 @@
+<div class="{{styles.dialogWrapper}}">
+    <div class="{{styles.dialogContent}}">
+        {{#each messages}}
+            {{{DialogMessage content=content time=time userId=user_id}}}
+        {{/each}}
+    </div>
+    <form class="{{styles.dialogMessage}} flex-center">
+        <div class="page-button {{styles.attach}}"></div>
+        <div class="flex-auto">
+            {{{LabelInput name="message" placeholder="Сообщение" validation="message" id="message"}}}
+        </div>
+        {{{Button label="Отправить" type="submit" onClick=onSend}}}
+    </form>
+</div>

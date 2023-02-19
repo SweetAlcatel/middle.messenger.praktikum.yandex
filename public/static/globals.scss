@@ -1,87 +1,106 @@
-/* stylelint-disable no-duplicate-selectors */
-
-/** Дефолтные стили и подключение остальных стилей */
-
-@import "../../src/pages/error/error";
+@use "../../src/styles/variables";
 @import "../../src/pages/signIn/signIn";
-@import "../../src/pages/signUp/signUp";
-@import "../../src/pages/chats/chats";
-@import "../../src/pages/profile/profile";
+@import ".../../src/pages/Error/error";
+@import "../../src/pages/Profile/styles.module";
+@import "../../src/pages/Messenger/styles.module";
+@import "../../src/layout/DialogInfo/styles.module";
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-/* Убираем внутренние отступы */
-ul[class],
-ol[class] {
+* {
   padding: 0;
-}
-
-/* Убираем внешние отступы */
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-ul[class],
-ol[class],
-li,
-figure,
-figcaption,
-blockquote,
-dl,
-dd {
   margin: 0;
 }
 
-/* Выставляем основные настройки по-умолчанию для body */
 body {
-  min-height: 100vh;
-  scroll-behavior: smooth;
-  text-rendering: optimizespeed;
-  line-height: 1.5;
+  font-family: Verdana, serif;
+  font-size: 14px;
 }
 
-/* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class */
-ul[class],
-ol[class] {
-  list-style: none;
+h1 {
+  font-size: 20px;
+  line-height: 20px;
+  margin: 20px 0;
 }
 
 a {
-  cursor: pointer;
-  color: blue;
+  text-decoration: none;
 }
 
-/* Упрощаем работу с изображениями */
-img {
-  max-width: 100%;
-  display: block;
+div {
+  box-sizing: border-box;
 }
 
-/* Указываем понятную периодичность в потоке данных у article */
-article > * + * {
-  margin-top: 1em;
+input {
+  padding: 5px;
 }
 
-/* Наследуем шрифты для инпутов и кнопок */
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
+ul {
+  margin: 0 20px;
 
-/* Удаляем все анимации и переходы для людей, которые предпочитай их не использовать */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  li {
+    margin: 20px;
   }
+}
+
+.wrapper {
+  min-height: 100vh;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.flex {
+  display: flex;
+}
+
+.flexAuto {
+  flex: 1 1 auto;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.textBold {
+  font-weight: 600;
+}
+
+.colorRed {
+  color: variables.$color-red;
+}
+
+.inputError {
+  color: red;
+  font-size: 10px;
+  position: absolute;
+  bottom: 4px;
+}
+
+#notification {
+  height: auto;
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  transition: all 1s ease-out;
+
+  > div {
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    width: 200px;
+    margin: 10px 0;
+  }
+}
+
+.warning {
+  background: #dd3b3b;
+}
+
+.success {
+  background: #4b65ce;
 }

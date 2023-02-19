@@ -1,46 +1,25 @@
-import loginTemplate from "bundle-text:./signIn.hbs";
-import { Input } from "../../layout/input/input";
-import { Button } from "../../layout/button/button";
-import { Block } from "../../utils/block";
-import { FixMeLater } from "../../types/index";
+import { Block } from "../../utils/Block";
+import template from "./signIn.hbs";
+import { getFormData } from "../../helpers/getFormData";
+import AuthController from "../../controllers/AuthController";
+import { ISigninData } from "../../api/interfaces";
 
-interface ISignInPage {}
+export class SignInPage extends Block {
+  constructor() {
+    super({});
+  }
 
-class SignInPage extends Block {
-  constructor(props: ISignInPage) {
-    super("div", props);
+  handleSubmit(e: Event) {
+    e.preventDefault();
+    const signinData = getFormData();
+
+    AuthController.signin(signinData as ISigninData);
   }
 
   render() {
-    return this.compile(loginTemplate);
+    return this.compile(template, {
+      children: this.children,
+      onClick: this.handleSubmit,
+    });
   }
 }
-
-export const signInPage = new SignInPage({
-  inputLogin: new Input({
-    type: "text",
-    name: "login",
-    id: "login",
-    events: {
-      focus: (e: FixMeLater) => console.log(e.target.value),
-      blur: (e: FixMeLater) => console.log(e.target.value),
-    },
-    pattern: `'/^[a-zA-Z0-9]+$/'`,
-  }),
-  inputPassword: new Input({
-    type: "password",
-    name: "password",
-    id: "password",
-    events: {
-      focus: (e: FixMeLater) => console.log(e.target.value),
-      blur: (e: FixMeLater) => console.log(e.target.value),
-    },
-    pattern: `/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/`,
-  }),
-  button: new Button({
-    text: "Авторизоваться",
-    events: {
-      click: () => console.log("click"),
-    },
-  }),
-});

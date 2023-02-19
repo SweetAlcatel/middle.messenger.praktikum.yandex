@@ -1,0 +1,66 @@
+@use "src/styles/variables";
+@use "src/styles/mixins";
+
+.dialogsItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border-top: 1px solid variables.$color-gray-light;
+  cursor: pointer;
+  padding: 10px;
+  max-height: 70px;
+  overflow: hidden;
+
+  &:hover {
+    background: #ececf1;
+  }
+
+  .avatar {
+    width: 50px;
+    height: 50px;
+    background: #d6d6d6;
+    border-radius: 50px;
+  }
+
+  .title {
+    flex: 1 1;
+
+    p {
+      margin-bottom: 4px;
+    }
+
+    span {
+      font-size: 12px;
+    }
+  }
+
+  .info {
+    align-items: flex-end;
+    justify-content: space-between;
+
+    .time {
+      color: variables.$color-gray;
+      font-size: 11px;
+    }
+
+    .counter {
+      @include mixins.flex-center;
+
+      background: #3369f3;
+      border-radius: 50px;
+      text-align: center;
+      color: white;
+      width: 21px;
+      height: 21px;
+      font-size: 11px;
+    }
+  }
+
+  .lastMessage {
+    color: variables.$color-gray;
+  }
+}
+
+.active {
+  background: #ececf1;
+}

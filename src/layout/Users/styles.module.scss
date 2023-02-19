@@ -1,0 +1,19 @@
+@use "src/styles/variables";
+
+.usersTable {
+  width: 100%;
+  margin: 15px 0;
+
+  td,
+  th {
+    padding: 5px;
+  }
+
+  tr:nth-child(even) {
+    background: #f1f1f1;
+  }
+
+  th {
+    background: #d0d0de;
+  }
+}

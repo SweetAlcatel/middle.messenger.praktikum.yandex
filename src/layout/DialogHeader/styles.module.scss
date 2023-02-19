@@ -1,0 +1,20 @@
+@use "../../styles/variables";
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid variables.$color-gray-light;
+}
+
+.photo {
+  width: 35px;
+  height: 35px;
+  background: #d6d6d6;
+  border-radius: 50px;
+}
+
+.username {
+  flex: 1;
+}

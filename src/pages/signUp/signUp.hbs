@@ -1,35 +1,15 @@
-<main class="registerWrapper">
-    <form class="registerContainer">
-        <h3>Регистрация</h3>
-        <div class="field">
-            <label for="email">Почта</label>
-            {{{inputEmail}}}
-        </div>
-        <div class="field">
-            <label for="login">Логин</label>
-            {{{inputLogin}}}
-        </div>
-        <div class="field">
-            <label for="first_name">Имя</label>
-            {{{inputFirstName}}}
-        </div>
-        <div class="field">
-            <label for="second_name">Фамилия</label>
-            {{{inputSecondName}}}
-        </div>
-        <div class="field">
-            <label for="phone">Телефон</label>
-            {{{inputTelephone}}}
-        </div>
-        <div class="field">
-            <label for="password">Пароль</label>
-            {{{inputPassword}}}
-        </div>
-        <div class="field">
-            <label for="passwordAgain">Пароль (еще раз)</label>
-            {{{inputPasswordAgain}}}
-        </div>
-        {{{button}}}
-        <a>Войти</a>
-    </form>
-</main>
+<div class="wrapper flexCenter">
+    <div class="formWrapper">
+        <form class="form">
+            <h1>Регистрация</h1>
+            {{{LabelInput label="Имя" name="first_name" validation="name"}}}
+            {{{LabelInput label="Фамилия" name="second_name" validation="name"}}}
+            {{{LabelInput label="Логин" name="login" validation="login"}}}
+            {{{LabelInput label="Почта" name="email" type="email" validation="email"}}}
+            {{{LabelInput label="Пароль" name="password" type="password" validation="password"}}}
+            {{{LabelInput label="Телефон" name="phone" type="tel" validation="phone"}}}
+            {{{Button label="Регистрация" width="100%" type="submit" onClick=onClick}}}
+            {{{Link label="Вход" to="/login"}}}
+        </form>
+    </div>
+</div>

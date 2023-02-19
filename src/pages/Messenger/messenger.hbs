@@ -1,0 +1,49 @@
+<div class="wrapper flex">
+    <div class="{{styles.chat}} flexAuto">
+        <div class="{{styles.dialogs}} flexColumn" width="100%">
+            <div class="{{styles.info}}">
+                {{{Button label="Создать чат" onClick=onShowCreateForm}}}
+                {{{Link label="Профиль >" to="/profile"}}}
+            </div>
+            <div>
+                <form class="{{styles.search}}">
+                    {{{Input placeholder="Поиск" name="search" id="search-chat" value=searchChatText}}}
+                    {{{Button label="Искать" onClick=onSearch}}}
+                </form>
+            </div>
+            <div class={{styles.content}}>
+                {{#each chats}}
+                    {{{DialogInfo
+                        id=id
+                        title=title
+                        last_message=last_message.content
+                        time=last_message.time
+                        unread_count=unread_count
+                        activeChat=activeChat
+                        onHideUsersForm=../onHideUsersForm
+                    }}}
+                {{/each}}
+            </div>
+        </div>
+        {{#if activeChat}}
+            <div class="{{styles.singleDialog}} flexColumn">
+                {{{DialogHeader activeChatTitle=activeChatTitle activeChatId=activeChat showUsersForm=onShowUsersForm}}}
+                {{#if showUsersForm}}
+                    {{{Users activeChat=activeChat}}}
+                {{else}}
+                    {{{Dialog messages=messages}}}
+                {{/if}}
+            </div>
+        {{else}}
+            <div class="flexCenter flexAuto">
+                <div class="formWrapper">
+                    <form class="form">
+                        <h1>Создать чат</h1>
+                        {{{LabelInput label="Название чата" name="title"}}}
+                        {{{Button label="Создать" onClick=createChat}}}
+                    </form>
+                </div>
+            </div>
+        {{/if}}
+    </div>
+</div>

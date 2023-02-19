@@ -1,0 +1,24 @@
+<div class="{{styles.dialogsItem}} dialogItem {{#if isActiveChat}}active{{/if}}" id={{id}} >
+    <div class="{{styles.avatar}}"></div>
+    <div class="{{styles.title}}">
+        <p class="textBold">{{title}}</p>
+        {{#if isAnswer}}
+            <span class="textBold">Вы:</span>
+        {{/if}}
+        <span class="{{styles.lastMessage}}">
+            {{last_message}}
+        </span>
+    </div>
+    <div class="{{styles.info}} flexColumn">
+        <div class="{{styles.time}}">{{time}}</div>
+        {{#if unread_count}}
+            <div class="{{styles.counter}} flexCenter">
+                {{#if isManyNotifications}}
+                    9+
+                {{else}}
+                    {{unread_count}}
+                {{/if}}
+            </div>
+        {{/if}}
+    </div>
+</div>
