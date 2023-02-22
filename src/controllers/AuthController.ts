@@ -33,7 +33,7 @@ export class AuthController {
     }
   }
 
-  async fetchUser() {
+  async fetchUser(): Promise<any> {
     try {
       const user = await this.api.read();
 

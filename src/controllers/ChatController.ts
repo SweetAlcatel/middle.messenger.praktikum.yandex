@@ -63,7 +63,7 @@ export class ChatsController {
     }
   }
 
-  async getChatToken(idChat: number) {
+  async getChatToken(idChat: number): Promise<any> {
     try {
       return await this.api.getChatToken(idChat);
     } catch (e) {
