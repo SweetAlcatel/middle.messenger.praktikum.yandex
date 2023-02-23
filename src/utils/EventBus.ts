@@ -16,6 +16,7 @@ export class EventBus {
       throw new Error(`Нет события: ${event}`);
     }
 
+    //@ts-ignore
     this.listeners[event] = this.listeners[event].filter(
       (listener) => listener !== callback
     );
@@ -26,6 +27,7 @@ export class EventBus {
       return;
     }
 
+    //@ts-ignore
     this.listeners[event].forEach(function (listener) {
       listener(...args);
     });
