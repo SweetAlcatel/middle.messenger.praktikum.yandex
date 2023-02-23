@@ -1,6 +1,6 @@
-## Ссылка на Pull Request - https://github.com/SweetAlcatel/middle.messenger.praktikum.yandex/pull/13
+## Ссылка на Pull Request - https://github.com/SweetAlcatel/middle.messenger.praktikum.yandex/pull/24
 
-## Ссылка на размещенный проект - https://mellow-smakager-f4d990.netlify.app/
+## Ссылка на размещенный проект - https://web-messenger-pck3.onrender.com/login
 
 ### Команды для запуска
 
