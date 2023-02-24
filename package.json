@@ -55,6 +55,7 @@
     "start": "webpack serve --open",
     "build": "webpack",
     "test": "mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'",
+    "lint": "eslint **/*.ts --ignore-pattern node_modules/",
     "prepare": "husky install"
   },
   "engine": {
