@@ -8,7 +8,7 @@ export class Dialog extends Block {
     e.preventDefault();
     const input = document.getElementById("message") as HTMLInputElement;
 
-    if (input) {
+    if (input && input.value > "0") {
       const value = input.value;
 
       MessageController.sendMessage(value);

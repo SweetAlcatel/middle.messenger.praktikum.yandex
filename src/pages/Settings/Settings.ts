@@ -15,6 +15,7 @@ export class SettingsPageBase extends Block {
     const formData = new FormData();
 
     if (avatar && getFirstFile(avatar)) {
+      //@ts-ignore
       formData.append("avatar", getFirstFile(avatar));
       UserController.updateAvatar(formData);
     }
